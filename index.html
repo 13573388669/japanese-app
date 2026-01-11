@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#131F24">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="从零开始学习日语 - 类似多邻国的游戏化学习体验">
+
+    <title>日语学习 - NihonGo!</title>
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- 顶部导航栏 -->
+        <header class="navbar">
+            <div class="navbar-left">
+                <button class="nav-btn" id="backBtn" aria-label="返回" style="display: none;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                    </svg>
+                </button>
+                <button class="nav-btn" id="menuBtn" aria-label="菜单">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+                    </svg>
+                </button>
+                <h1 class="logo">日本語</h1>
+            </div>
+            <div class="navbar-center">
+                <div class="streak-badge" id="streakBadge">
+                    <span class="streak-icon">🔥</span>
+                    <span class="streak-count" id="streakCount">0</span>
+                </div>
+            </div>
+            <div class="navbar-right">
+                <div class="hearts-display" id="heartsDisplay">
+                    <span class="heart-icon">❤️</span>
+                    <span class="heart-count" id="heartCount">5</span>
+                </div>
+                <div class="xp-display" id="xpDisplay">
+                    <span class="xp-icon">⭐</span>
+                    <span class="xp-count" id="xpCount">0</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="app-body">
+            <!-- 侧边栏菜单 -->
+            <aside class="sidebar" id="sidebar">
+                <nav class="sidebar-nav">
+                    <a href="#" class="sidebar-link active" data-page="home">
+                        <span class="sidebar-icon">🏠</span>
+                        <span>主页</span>
+                    </a>
+                    <a href="#" class="sidebar-link" data-page="lessons">
+                        <span class="sidebar-icon">📚</span>
+                        <span>课程</span>
+                    </a>
+                    <a href="#" class="sidebar-link" data-page="kana">
+                        <span class="sidebar-icon">あ</span>
+                        <span>五十音图</span>
+                    </a>
+                    <a href="#" class="sidebar-link" data-page="stats">
+                        <span class="sidebar-icon">📊</span>
+                        <span>统计</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- 遮罩层 -->
+            <div class="overlay" id="overlay"></div>
+
+            <!-- 主内容区域 -->
+            <main class="main-content" id="mainContent">
+                <!-- 动态内容将在这里渲染 -->
+            </main>
+        </div>
+
+        <!-- 底部导航 (移动端) -->
+        <nav class="bottom-nav">
+            <button class="bottom-nav-btn active" data-page="home">
+                <span class="bottom-nav-icon">🏠</span>
+                <span class="bottom-nav-label">主页</span>
+            </button>
+            <button class="bottom-nav-btn" data-page="lessons">
+                <span class="bottom-nav-icon">📚</span>
+                <span class="bottom-nav-label">课程</span>
+            </button>
+            <button class="bottom-nav-btn" data-page="kana">
+                <span class="bottom-nav-icon">あ</span>
+                <span class="bottom-nav-label">假名</span>
+            </button>
+            <button class="bottom-nav-btn" data-page="stats">
+                <span class="bottom-nav-icon">📊</span>
+                <span class="bottom-nav-label">统计</span>
+            </button>
+        </nav>
+
+        <!-- 练习弹窗 -->
+        <div class="modal" id="practiceModal">
+            <div class="modal-content practice-container">
+                <!-- 练习内容将动态渲染 -->
+            </div>
+        </div>
+
+        <!-- 结果弹窗 -->
+        <div class="modal" id="resultModal">
+            <div class="modal-content result-container">
+                <!-- 结果内容将动态渲染 -->
+            </div>
+        </div>
+
+        <!-- 卡通吉祥物 -->
+        <div class="mascot-container">
+            <div class="mascot">🦉</div>
+        </div>
+
+        <!-- 特效容器 -->
+        <div class="effects-container" id="effectsContainer"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+
+</html>
