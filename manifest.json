@@ -2,7 +2,7 @@
     "name": "日语学习 NihonGo",
     "short_name": "NihonGo",
     "description": "从零开始学习日语 - 类似多邻国的游戏化学习体验",
-    "start_url": "/",
+    "start_url": ".",
     "display": "standalone",
     "background_color": "#131F24",
     "theme_color": "#58CC02",
