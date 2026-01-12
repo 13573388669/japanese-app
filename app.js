@@ -162,6 +162,7 @@ const soundManager = {
     }
 };
 
+// Audio & TTS Management (Using Youdao Online API for natural voice)
 const ttsManager = {
     audio: new Audio(),
     speak(text) {
