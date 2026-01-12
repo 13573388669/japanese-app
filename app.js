@@ -163,58 +163,43 @@ const soundManager = {
 };
 
 const ttsManager = {
-    voices: [],
-    activeUtterance: null, // Prevent GC
-    init() {
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.onvoiceschanged = () => {
-                this.voices = window.speechSynthesis.getVoices();
-            };
-            this.voices = window.speechSynthesis.getVoices();
-        }
-    },
-    speak(text, rate = 0.9, forceLang = null) {
-        if (!window.speechSynthesis) return;
-
-        // Ensure voices are loaded
-        if (this.voices.length === 0) {
-            this.voices = window.speechSynthesis.getVoices();
-        }
-
+    audio: new Audio(),
+    speak(text) {
+        if (!text) return;
         try {
-            window.speechSynthesis.cancel();
+            // Cancel previous audio
+            this.audio.pause();
+            this.audio.currentTime = 0;
 
-            const utter = new SpeechSynthesisUtterance(text);
-            this.activeUtterance = utter; // Keep reference
+            // Use Youdao Dictionary API (Public, reliable in China)
+            // le=jap for Japanese
+            const url = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(text)}&le=jap`;
 
-            let targetLang = forceLang || 'ja-JP';
-            if (!forceLang) {
-                const hasJP = /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/.test(text);
-                targetLang = hasJP ? 'ja-JP' : 'zh-CN';
-            }
+            this.audio.src = url;
 
-            utter.lang = targetLang;
-            utter.rate = rate;
-
-            // Explicit Voice Selection for Android
-            const voice = this.voices.find(v => v.lang === targetLang || v.lang === targetLang.replace('-', '_'));
-            if (voice) {
-                utter.voice = voice;
-            }
-
-            utter.onend = () => { this.activeUtterance = null; };
-            utter.onerror = (e) => {
-                console.warn('TTS Error', e);
-                this.activeUtterance = null;
+            // Handle Loading Errors
+            this.audio.onerror = (e) => {
+                console.warn('Audio File Error', e);
+                // Fallback or silent fail (toast is too intrusive for every click if network is bad)
+                const t = document.getElementById('toast');
+                if (t && !t.classList.contains('visible')) {
+                    showToast('音频加载失败 (请检查网络)');
+                }
             };
 
-            window.speechSynthesis.speak(utter);
-
-            // Debug: Show toast if it fails silently? No, keep it clean for now.
-        } catch (e) { console.warn('TTS speak error', e); }
+            const playPromise = this.audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.warn('Audio Play Blocked', error);
+                    // Usually due to no user interaction yet, but we have lazy init now
+                });
+            }
+        } catch (e) {
+            console.warn('Audio System Error', e);
+        }
     }
 };
-ttsManager.init();
+// Removed ttsManager.init() as it is no longer needed
 
 let state = {
     user: { xp: 0, level: 1, hearts: 5, streak: 0, lessonsCompleted: [] },
