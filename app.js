@@ -118,18 +118,33 @@ const wordsData = {
 };
 
 const soundManager = {
-    ctx: new (window.AudioContext || window.webkitAudioContext)(),
+    ctx: null,
+    init() {
+        if (!this.ctx) {
+            try {
+                this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+            } catch (e) { console.warn('AudioContext init failed', e); }
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+            this.ctx.resume().catch(e => console.warn('AudioContext resume failed', e));
+        }
+    },
     playTone(freq, duration, type = 'sine', volume = 0.1) {
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-        osc.type = type;
-        osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
-        gain.gain.setValueAtTime(volume, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-        osc.start();
-        osc.stop(this.ctx.currentTime + duration);
+        this.init();
+        if (!this.ctx) return;
+
+        try {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+            gain.gain.setValueAtTime(volume, this.ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start();
+            osc.stop(this.ctx.currentTime + duration);
+        } catch (e) { console.warn('Audio play failed', e); }
     },
     click() { this.playTone(800, 0.1, 'sine', 0.05); },
     correct() {
@@ -149,18 +164,21 @@ const soundManager = {
 
 const ttsManager = {
     speak(text, rate = 0.9, forceLang = null) {
-        window.speechSynthesis.cancel();
-        const utter = new SpeechSynthesisUtterance(text);
+        if (!window.speechSynthesis) return;
+        try {
+            window.speechSynthesis.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
 
-        let lang = forceLang || 'ja-JP';
-        if (!forceLang) {
-            const hasJP = /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/.test(text);
-            lang = hasJP ? 'ja-JP' : 'zh-CN';
-        }
+            let lang = forceLang || 'ja-JP';
+            if (!forceLang) {
+                const hasJP = /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/.test(text);
+                lang = hasJP ? 'ja-JP' : 'zh-CN';
+            }
 
-        utter.lang = lang;
-        utter.rate = rate;
-        window.speechSynthesis.speak(utter);
+            utter.lang = lang;
+            utter.rate = rate;
+            window.speechSynthesis.speak(utter);
+        } catch (e) { console.warn('TTS speak error', e); }
     }
 };
 
@@ -199,7 +217,10 @@ function renderPage(path, push = true) {
     if (push) state.history.push(path);
     state.currentPath = path;
     const container = document.getElementById('mainContent');
-    container.className = 'main-content fade-in';
+    // Force reflow to restart animation (Android Fix)
+    container.classList.remove('fade-in');
+    void container.offsetWidth;
+    container.classList.add('fade-in');
     switch (path) {
         case 'dashboard': renderDashboard(); break;
         case 'lessons': renderLessons(); break;
