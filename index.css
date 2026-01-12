@@ -102,6 +102,18 @@ body {
     position: relative;
 }
 
+#mainContent {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Crucial for centering */
+    width: 100%;
+}
+
 /* ========================================
    导航栏
    ======================================== */
@@ -1568,9 +1580,14 @@ body {
    ======================================== */
 .lessons-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--spacing-md);
+    /* 响应式网格：最小宽度280px，自动填充 */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
     margin-top: var(--spacing-md);
+    width: 100%;
+    /* 确保占满容器宽度 */
+    max-width: 1200px;
+    /* 限制最大宽度以免在大屏上太散 */
 }
 
 .lesson-card {
@@ -1580,9 +1597,16 @@ body {
     cursor: pointer;
     transition: all var(--transition-fast);
     display: flex;
+    flex-direction: column;
+    /* 改为垂直布局，适应卡片样式 */
     align-items: center;
+    /* 居中对齐 */
+    text-align: center;
+    /* 文字居中 */
     gap: var(--spacing-md);
     border: 2px solid transparent;
+    height: 100%;
+    /* 统一高度 */
 }
 
 .lesson-card:hover {
@@ -1641,7 +1665,197 @@ body {
     border-color: var(--text-secondary);
 }
 
-.practice-nav-btn:active {
-    transform: translateY(1px);
+
+/* New Speaker Btn */
+.speaker-circle-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    color: var(--primary-color);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.speaker-circle-btn:active {
+    transform: scale(0.95);
+    background: var(--bg-hover);
+}
+
+/* ========================================
+   Matching Question (Pairs)
+   ======================================== */
+.matching-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    width: 100%;
+}
+
+.matching-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.match-card {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.match-card:hover:not(:disabled) {
+    background: var(--bg-tertiary);
+    border-color: var(--text-secondary);
+}
+
+.match-card.selected {
+    border-color: var(--primary-color);
+    background: rgba(88, 204, 2, 0.1);
+    box-shadow: 0 0 0 2px var(--primary-color);
+    z-index: 10;
+}
+
+.match-card.matched {
+    opacity: 0.5;
+    pointer-events: none;
+    border-color: transparent;
+    background: var(--bg-tertiary);
+    color: var(--text-tertiary);
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+@media (max-width: 600px) {
+    .matching-grid {
+        gap: var(--spacing-md);
+    }
+
+    .match-card {
+        padding: var(--spacing-md);
+        font-size: 1rem;
+    }
+}
+
+/* ========================================
+   Speaking Question (Shadowing)
+   ======================================== */
+.speaking-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    width: 100%;
+}
+
+.mic-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.mic-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    font-size: 2.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    outline: none;
+    position: relative;
+    box-shadow: 0 4px 0 var(--border-color);
+}
+
+.mic-btn:active {
+    transform: translateY(4px);
     box-shadow: none;
+}
+
+.mic-btn.listening {
+    border-color: var(--primary-color);
+    background: rgba(88, 204, 2, 0.1);
+    animation: pulse 1.5s infinite;
+}
+
+.mic-status {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    min-height: 1.5em;
+}
+
+.speech-result {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    text-align: center;
+    max-width: 90%;
+    padding: 10px;
+    background: rgba(88, 204, 2, 0.1);
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(88, 204, 2, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(88, 204, 2, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(88, 204, 2, 0);
+    }
+}
+
+.wave-anim {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    animation: scaleLoop 1s infinite alternate;
+}
+
+@keyframes scaleLoop {
+    from {
+        transform: scale(0.8);
+        opacity: 0.7;
+    }
+
+    to {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* ========================================
+   Question Header Title for new types
+   ======================================== */
+.question-text {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-lg);
+    text-align: left;
+    width: 100%;
+    font-weight: bold;
 }

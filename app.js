@@ -99,74 +99,127 @@ const lessons = [
             }
         ]
     },
-    { id: 'n5-2', name: '日常问候 (N5)', type: 'word', words: ['w6', 'w7', 'w8', 'w9', 'w10'], sentences: [] },
-    { id: 'h-1', name: '清音 (あ行)', type: 'kana', start: 0, end: 5 },
-    { id: 'h-2', name: '清音 (か行)', type: 'kana', start: 5, end: 10 },
-    // NHK Easy Japanese Lessons
     {
-        id: 'nhk-1',
-        name: '#1 问路',
+        id: 'n5-2',
+        name: '日常问候 (N5)',
         type: 'word',
-        words: ['nhk_w1', 'nhk_w2'],
-        sentences: [{
-            jp: 'はるさんハウスはどこですか',
-            cn: '春婆婆之家在哪里',
-            segments: [
-                { text: 'はるさんハウス', kana: 'はるさんはうす', romaji: 'harusan hausu', cn: '春婆婆之家' },
-                { text: 'は', kana: 'は', romaji: 'wa', cn: '(助词)' },
-                { text: 'どこ', kana: 'どこ', romaji: 'doko', cn: '哪里' },
-                { text: 'ですか', kana: 'ですか', romaji: 'desuka', cn: '是...吗' }
-            ]
-        }]
+        words: ['w6', 'w7', 'w8', 'w9', 'w10'],
+        sentences: []
     },
     {
-        id: 'nhk-2',
-        name: '#2 自我介绍',
-        type: 'word',
-        words: ['nhk_w3', 'w2'], // w2 is gakusei
-        sentences: [{
-            jp: 'タムです。学生です',
-            cn: '我叫心心。是学生',
-            segments: [
-                { text: 'タム', kana: 'たむ', romaji: 'tamu', cn: '心心' },
-                { text: 'です', kana: 'です', romaji: 'desu', cn: '是' },
-                { text: '学生', kana: 'がくせい', romaji: 'gakusei', cn: '学生' },
-                { text: 'です', kana: 'です', romaji: 'desu', cn: '是' }
-            ]
-        }]
+        id: 'h-1',
+        name: '清音 (あ行)',
+        type: 'kana',
+        start: 0,
+        end: 5
     },
     {
-        id: 'nhk-3',
-        name: '#3 来自哪里',
-        type: 'word',
-        words: ['nhk_w4', 'nhk_w5'],
-        sentences: [{
-            jp: 'ベトナムから来ました',
-            cn: '来自越南',
-            segments: [
-                { text: 'ベトナム', kana: 'べとなむ', romaji: 'betonamu', cn: '越南' },
-                { text: 'から', kana: 'から', romaji: 'kara', cn: '从' },
-                { text: '来ました', kana: 'きました', romaji: 'kimashita', cn: '来了' }
-            ]
-        }]
+        id: 'h-2',
+        name: '清音 (か行)',
+        type: 'kana',
+        start: 5,
+        end: 10
     },
+    // 场景课程：购物
     {
-        id: 'nhk-4',
-        name: '#4 将要做什么',
+        id: 'scene-shopping-1',
+        name: '便利店购物',
         type: 'word',
-        words: ['nhk_w6', 'nhk_w7', 'nhk_w8'],
-        sentences: [{
-            jp: '大学で日本語を勉強します',
-            cn: '在大学学日语',
-            segments: [
-                { text: '大学', kana: 'だいがく', romaji: 'daigaku', cn: '大学' },
-                { text: 'で', kana: 'で', romaji: 'de', cn: '在' },
-                { text: '日本語', kana: 'にほんご', romaji: 'nihongo', cn: '日语' },
-                { text: 'を', kana: 'を', romaji: 'wo', cn: '(助词)' },
-                { text: '勉強', kana: 'べんきょう', romaji: 'benkyou', cn: '学习' },
-                { text: 'します', kana: 'します', romaji: 'shimasu', cn: '做' }
-            ]
-        }]
+        icon: '🏪',
+        words: ['shopping_1', 'shopping_2', 'shopping_3', 'shopping_4', 'shopping_5'],
+        sentences: [
+            {
+                jp: 'いくらですか。',
+                cn: '多少钱？',
+                segments: [
+                    { text: 'いくら', kana: 'いくら', romaji: 'ikura', cn: '多少钱' },
+                    { text: 'ですか', kana: 'ですか', romaji: 'desuka', cn: '是...吗' },
+                    { text: '。', kana: '。', romaji: '', cn: '' }
+                ]
+            },
+            {
+                jp: 'これをください。',
+                cn: '请给我这个。',
+                segments: [
+                    { text: 'これ', kana: 'これ', romaji: 'kore', cn: '这个' },
+                    { text: 'を', kana: 'を', romaji: 'wo', cn: '(助词)' },
+                    { text: 'ください', kana: 'ください', romaji: 'kudasai', cn: '请给我/拜托了' },
+                    { text: '。', kana: '。', romaji: '', cn: '' }
+                ]
+            }
+        ]
+    },
+    // 场景课程：餐厅
+    {
+        id: 'scene-food-1',
+        name: '餐厅点餐',
+        type: 'word',
+        icon: '🍜',
+        words: ['food_1', 'food_2', 'food_3', 'food_4', 'food_5'],
+        sentences: [
+            {
+                jp: '水をください。',
+                cn: '请给我水。',
+                segments: [
+                    { text: '水', kana: 'みず', romaji: 'mizu', cn: '水' },
+                    { text: 'を', kana: 'を', romaji: 'wo', cn: '(助词)' },
+                    { text: 'ください', kana: 'ください', romaji: 'kudasai', cn: '请给我' },
+                    { text: '。', kana: '。', romaji: '', cn: '' }
+                ]
+            },
+            {
+                jp: 'メニューをお願いします。',
+                cn: '请给我菜单。',
+                segments: [
+                    { text: 'メニュー', kana: 'メニュー', romaji: 'menyu-', cn: '菜单' },
+                    { text: 'を', kana: 'を', romaji: 'wo', cn: '(助词)' },
+                    { text: 'お願いします', kana: 'おねがいします', romaji: 'onegaishimasu', cn: '拜托了' },
+                    { text: '。', kana: '。', romaji: '', cn: '' }
+                ]
+            }
+        ]
+    },
+    // 场景课程：数字与时间
+    {
+        id: 'scene-time-1',
+        name: '数字与时间',
+        type: 'word',
+        icon: '🕐',
+        words: ['num_1', 'num_2', 'num_3', 'time_1', 'time_2'],
+        sentences: [
+            {
+                jp: '今、何時ですか。',
+                cn: '现在几点了？',
+                segments: [
+                    { text: '今', kana: 'いま', romaji: 'ima', cn: '现在' },
+                    { text: '、', kana: '、', romaji: '', cn: '' },
+                    { text: '何時', kana: 'なんじ', romaji: 'nanji', cn: '几点' },
+                    { text: 'ですか', kana: 'ですか', romaji: 'desuka', cn: '是...吗' },
+                    { text: '。', kana: '。', romaji: '', cn: '' }
+                ]
+            }
+        ]
+    },
+    // 场景课程：旅行问路
+    {
+        id: 'scene-travel-1',
+        name: '旅行问路',
+        type: 'word',
+        icon: '🗾',
+        words: ['travel_1', 'travel_2', 'travel_3', 'travel_4', 'travel_5'],
+        sentences: [
+            {
+                jp: '駅はどこですか。',
+                cn: '车站在哪里？',
+                segments: [
+                    { text: '駅', kana: 'えき', romaji: 'eki', cn: '车站' },
+                    { text: 'は', kana: 'は', romaji: 'wa', cn: '(助词)' },
+                    { text: 'どこ', kana: 'どこ', romaji: 'doko', cn: '哪里' },
+                    { text: 'ですか', kana: 'ですか', romaji: 'desuka', cn: '是...吗' },
+                    { text: '。', kana: '。', romaji: '', cn: '' }
+                ]
+            }
+        ]
     }
 ];
 
@@ -181,15 +234,34 @@ const wordsData = {
     'w8': { jp: 'こんばんは', kana: 'こんばんは', romaji: 'konbanwa', cn: '晚上好' },
     'w9': { jp: 'さようなら', kana: 'さようなら', romaji: 'sayounara', cn: '再见' },
     'w10': { jp: 'ありがとう', kana: 'ありがとう', romaji: 'arigatou', cn: '谢谢' },
-    // NHK Words
-    'nhk_w1': { jp: 'はるさんハウス', kana: 'はるさんはうす', romaji: 'harusan hausu', cn: '春婆婆之家' },
-    'nhk_w2': { jp: 'どこ', kana: 'どこ', romaji: 'doko', cn: '哪里' },
-    'nhk_w3': { jp: 'タム', kana: 'たむ', romaji: 'tamu', cn: '心心' },
-    'nhk_w4': { jp: 'ベトナム', kana: 'べとなむ', romaji: 'betonamu', cn: '越南' },
-    'nhk_w5': { jp: '来ました', kana: 'きました', romaji: 'kimashita', cn: '来了' },
-    'nhk_w6': { jp: '大学', kana: 'だいがく', romaji: 'daigaku', cn: '大学' },
-    'nhk_w7': { jp: '日本語', kana: 'にほんご', romaji: 'nihongo', cn: '日语' },
-    'nhk_w8': { jp: '勉強', kana: 'べんきょう', romaji: 'benkyou', cn: '学习' }
+
+    // Shopping
+    'shopping_1': { jp: 'いくら', kana: 'いくら', romaji: 'ikura', cn: '多少钱' },
+    'shopping_2': { jp: 'これ', kana: 'これ', romaji: 'kore', cn: '这个' },
+    'shopping_3': { jp: 'それ', kana: 'それ', romaji: 'sore', cn: '那个' },
+    'shopping_4': { jp: '高い', kana: 'たかい', romaji: 'takai', cn: '贵/高' },
+    'shopping_5': { jp: '安い', kana: 'やすい', romaji: 'yasui', cn: '便宜' },
+
+    // Food
+    'food_1': { jp: '水', kana: 'みず', romaji: 'mizu', cn: '水' },
+    'food_2': { jp: 'メニュー', kana: 'メニュー', romaji: 'menyu-', cn: '菜单' },
+    'food_3': { jp: '美味しい', kana: 'おいしい', romaji: 'oishii', cn: '好吃' },
+    'food_4': { jp: '注文', kana: 'ちゅうもん', romaji: 'chuumon', cn: '点餐' },
+    'food_5': { jp: 'ご飯', kana: 'ごはん', romaji: 'gohan', cn: '米饭/饭' },
+
+    // Numbers & Time
+    'num_1': { jp: '一', kana: 'いち', romaji: 'ichi', cn: '一' },
+    'num_2': { jp: '二', kana: 'に', romaji: 'ni', cn: '二' },
+    'num_3': { jp: '三', kana: 'さん', romaji: 'san', cn: '三' },
+    'time_1': { jp: '何時', kana: 'なんじ', romaji: 'nanji', cn: '几点' },
+    'time_2': { jp: '今', kana: 'いま', romaji: 'ima', cn: '现在' },
+
+    // Travel
+    'travel_1': { jp: '駅', kana: 'えき', romaji: 'eki', cn: '车站' },
+    'travel_2': { jp: 'トイレ', kana: 'といれ', romaji: 'toire', cn: '厕所' },
+    'travel_3': { jp: 'どこ', kana: 'どこ', romaji: 'doko', cn: '哪里' },
+    'travel_4': { jp: 'ホテル', kana: 'ほてる', romaji: 'hoteru', cn: '酒店' },
+    'travel_5': { jp: 'バス', kana: 'ばす', romaji: 'basu', cn: '巴士' }
 };
 
 const soundManager = {
@@ -363,7 +435,7 @@ function renderLessons() {
         <div class="lessons-grid">
             ${lessons.map(l => `
                 <div class="lesson-card" onclick="app.startLesson('${l.id}')">
-                    <div class="lesson-icon">${l.type === 'kana' ? '🔤' : '📖'}</div>
+                    <div class="lesson-icon">${l.icon || (l.type === 'kana' ? '🔤' : '📖')}</div>
                     <div class="lesson-info">
                         <div class="lesson-name">${l.name}</div>
                         <div class="lesson-type">${l.type === 'kana' ? '五十音' : '词汇与短句'}</div>
@@ -415,38 +487,115 @@ function renderPractice() {
             <div class="practice-hearts">❤️ ${state.user.hearts}</div>
         </div>
         <div class="practice-content">
-            ${q.type === 'sentence-building' ? `
-                <div class="target-sentence-cn">${q.cn}</div>
-                <div class="sentence-build-area" id="builtSentence">
-                    ${(state.practice.builtSentence || []).map((idx, i) => `<button class="build-block" onclick="app.removeBuildingBlock(${i})">${q.blocks[idx]}</button>`).join('')}
-                </div>
-                <div class="build-blocks-pool">
-                    ${q.blocks.map((block, i) => {
-        const isUsed = (state.practice.builtSentence || []).includes(i);
-        return `<button class="build-block ${isUsed ? 'used' : ''}" onclick="app.addBuildingBlock(${i})">${block}</button>`;
-    }).join('')}
-                </div>
-            ` : `
-                <div class="question-kana-container">
-                    <div class="speaker-icon" onclick="event.stopPropagation(); app.speakText('${textToSpeak.replace(/[\。\.]/g, '')}', 'ja')">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18.03,19.86 21,16.28 21,12C21,7.72 18.03,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16.02C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z"></path></svg>
-                    </div>
-                    ${q.segments ?
-            `<div class="sentence-segments">
-                            ${q.segments.map((seg, idx) => {
-                if (!seg.text || ['。', '？', '！', '.', '?', '!'].includes(seg.text)) return ''; // Return empty string to hide
-                return `<div class="segment-wrapper" onclick="app.showSegmentHint(this, ${idx})"><div class="segment-text">${seg.text}</div><div class="segment-hint"><div class="hint-romaji">${(seg.romaji || '').toLowerCase()}</div><div class="hint-cn">${seg.cn}</div></div></div>`;
-            }).join('')}
-                        </div>` : `<div class="question-kana" onclick="app.speakText('${textToSpeak.replace(/[\。\.\s]/g, '')}', 'ja')">${q.display}</div>`
-        }
-                </div>
-                <div class="options-grid">${q.options.map((opt, i) => `<button class="option-btn" onclick="app.selectAnswer(${i})">${opt}</button>`).join('')}</div>
-            `}
+            ${renderQuestionContent(q)}
         </div>
         <div class="practice-footer">
-            <button class="btn btn-primary btn-block" id="checkBtn" onclick="app.checkAnswer()" ${q.type === 'sentence-building' && (!state.practice.builtSentence || state.practice.builtSentence.length === 0) ? 'disabled' : (q.type !== 'sentence-building' && state.practice.selectedAnswer === null ? 'disabled' : '')}>检查</button>
+            ${renderQuestionFooter(q)}
         </div>
     `;
+}
+
+function renderQuestionContent(q) {
+    if (q.type === 'sentence-building') {
+        return `
+            <div class="target-sentence-cn">${q.cn}</div>
+            <div class="sentence-build-area" id="builtSentence">
+                ${(state.practice.builtSentence || []).map((idx, i) => `<button class="build-block" onclick="app.removeBuildingBlock(${i})">${q.blocks[idx]}</button>`).join('')}
+            </div>
+            <div class="build-blocks-pool">
+                ${q.blocks.map((block, i) => {
+            const isUsed = (state.practice.builtSentence || []).includes(i);
+            return `<button class="build-block ${isUsed ? 'used' : ''}" onclick="app.addBuildingBlock(${i})">${block}</button>`;
+        }).join('')}
+            </div>
+        `;
+    } else if (q.type === 'matching') {
+        return `
+            <h2 class="question-text">匹配单词与含义</h2>
+            <div class="matching-grid">
+                <div class="matching-col">
+                    ${q.leftItems.map(item => `
+                        <button class="match-card ${item.matched ? 'matched' : ''} ${state.practice.matching?.left?.id === item.id ? 'selected' : ''}" 
+                                onclick="app.handleMatchClick('left', ${item.id})" ${item.matched ? 'disabled' : ''}>
+                            ${item.left}
+                        </button>`).join('')}
+                </div>
+                <div class="matching-col">
+                    ${q.rightItems.map(item => `
+                        <button class="match-card ${item.matched ? 'matched' : ''} ${state.practice.matching?.right?.id === item.id ? 'selected' : ''}" 
+                                onclick="app.handleMatchClick('right', ${item.id})" ${item.matched ? 'disabled' : ''}>
+                            ${item.right}
+            </button>`).join('')}
+                </div>
+            </div>
+        `;
+    } else if (q.type === 'speaking') {
+        // Construct full Kana string for most reliable TTS
+        let playAudio = (q.audio || q.display).replace(/[\。\.]/g, '');
+        if (q.segments) {
+            playAudio = q.segments.map(s => s.kana || s.text).join('').replace(/[\。\.]/g, '');
+        }
+
+        return `
+            <h2 class="question-text">请大声朗读</h2>
+            <div class="speaking-layout">
+                <div class="speaking-prompt-container" style="display: flex; align-items: flex-start; justify-content: center; gap: 15px; margin-bottom: 25px; width: 100%;">
+                     <!-- margin-top to align with Japanese text below Romaji -->
+                     <button class="speaker-icon" style="margin-top: 28px; position: relative; z-index: 10; background:transparent; border:none;" onclick="app.speakText('${playAudio}', 'ja'); app.showToast('播放中...');">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18.03,19.86 21,16.28 21,12C21,7.72 18.03,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16.02C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z"></path></svg>
+                     </button>
+                     <div class="text-stack" style="display: flex; flex-direction: column; align-items: center; cursor: pointer;" onclick="app.speakText('${playAudio}', 'ja'); app.showToast('播放中...');">
+                         <div class="hint-romaji" style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 4px; font-weight: 500;">${q.romaji}</div>
+                         ${q.segments ?
+                `<div class="sentence-segments" style="justify-content: center;">
+                                ${q.segments.map((seg, idx) => {
+                    if (!seg.text || ['。', '？', '！', '.', '?', '!'].includes(seg.text)) return '';
+                    return `<div class="segment-wrapper" onclick="app.showSegmentHint(this, ${idx})"><div class="segment-text" style="font-size: 2.2rem;">${seg.text}</div><div class="segment-hint"><div class="hint-romaji">${(seg.romaji || '').toLowerCase()}</div><div class="hint-cn">${seg.cn}</div></div></div>`;
+                }).join('')}
+                            </div>`
+                : `<div class="question-kana" style="font-size: 2.2rem; line-height: 1.2; transition: color 0.2s; cursor: pointer;" onclick="app.speakText('${playAudio}', 'ja'); app.showToast('播放中...');">${q.display.replace(/[\。\.]/g, '')}</div>`
+            }
+                     </div>
+                </div>
+                
+                <div class="mic-container">
+                    <button class="mic-btn ${state.practice.isListening ? 'listening' : ''}" onclick="app.toggleListening()">
+                        ${state.practice.isListening ? '<div class="wave-anim"></div>' : '🎙️'}
+                    </button>
+                    <div class="mic-status">${state.practice.isListening ? '正在听...' : '点击麦克风开始说话'}</div>
+                    ${state.practice.speechResult ? `<div class="speech-result">"${state.practice.speechResult}"</div>` : ''}
+                </div>
+            </div>
+        `;
+    } else {
+        const textToSpeak = q.audio || q.display || '';
+        return `
+             <div class="question-kana-container">
+                <button class="speaker-icon" style="background:transparent; border:none; cursor:pointer;" onclick="app.speakText('${textToSpeak.replace(/[\。\.]/g, '')}', 'ja'); app.showToast('播放中...');">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18.03,19.86 21,16.28 21,12C21,7.72 18.03,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16.02C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z"></path></svg>
+                </button>
+                ${q.segments ?
+                `<div class="sentence-segments">
+                        ${q.segments.map((seg, idx) => {
+                    if (!seg.text || ['。', '？', '！', '.', '?', '!'].includes(seg.text)) return '';
+                    return `<div class="segment-wrapper" onclick="app.showSegmentHint(this, ${idx})"><div class="segment-text">${seg.text}</div><div class="segment-hint"><div class="hint-romaji">${(seg.romaji || '').toLowerCase()}</div><div class="hint-cn">${seg.cn}</div></div></div>`;
+                }).join('')}
+                    </div>` : `<div class="question-kana" onclick="app.speakText('${textToSpeak.replace(/[\。\.\s]/g, '')}', 'ja'); app.showToast('播放中...');">${q.display}</div>`
+            }
+            </div>
+            <div class="options-grid">${q.options.map((opt, i) => `<button class="option-btn" onclick="app.selectAnswer(${i})">${opt}</button>`).join('')}</div>
+        `;
+    }
+}
+
+function renderQuestionFooter(q) {
+    if (q.type === 'matching') {
+        return ''; // Matching auto-checks
+    } else if (q.type === 'speaking') {
+        return `<button class="btn btn-primary btn-block" onclick="app.checkSpeaking(true)">跳过 / 我读完了</button>`;
+    }
+    return `<button class="btn btn-primary btn-block" id="checkBtn" onclick="app.checkAnswer()" ${q.type === 'sentence-building' && (!state.practice.builtSentence || state.practice.builtSentence.length === 0) ? 'disabled' : (q.type !== 'sentence-building' && state.practice.selectedAnswer === null ? 'disabled' : '')}>检查</button>`;
+
 }
 
 function selectAnswer(index) {
@@ -483,7 +632,23 @@ function selectAnswer(index) {
     document.getElementById('checkBtn').disabled = false;
 }
 
-function checkAnswer() {
+
+
+// Overload checkAnswer for Matching auto-complete
+function checkAnswer(isMatchingComplete = false) {
+    if (isMatchingComplete) {
+        soundManager.correct();
+        state.practice.correctCount++;
+        addXP(10);
+
+        const footer = document.querySelector('.practice-footer');
+        // Matching often doesn't have a footer, so we inject or navigate
+        // Force navigate next:
+        app.nextQuestion();
+        return;
+    }
+
+    // Default Check Logic
     const q = state.practice.questions[state.practice.currentIndex];
     let isCorrect = false;
 
@@ -494,7 +659,8 @@ function checkAnswer() {
         const built = (state.practice.builtSentence || []).map(idx => q.blocks[idx]).join('');
         // Compare cleaned strings
         isCorrect = clean(built) === clean(q.answer);
-    } else {
+    } else if (q.type !== 'matching' && q.type !== 'speaking') {
+        // Matching handled above, Speaking handled separately
         isCorrect = state.practice.selectedAnswer === q.correctIndex;
         document.querySelectorAll('.option-btn').forEach((btn, i) => {
             btn.disabled = true;
@@ -513,7 +679,7 @@ function checkAnswer() {
             </div>
             <button class="btn ${isCorrect ? 'btn-success' : 'btn-danger'}" onclick="app.nextQuestion()">继续</button>
         </div>
-    `;
+        `;
     if (isCorrect) { soundManager.correct(); state.practice.correctCount++; addXP(10); }
     else {
         soundManager.incorrect(); state.user.hearts = Math.max(0, state.user.hearts - 1);
@@ -552,10 +718,11 @@ function showResult(success) {
                 <div class="result-stat"><div class="result-stat-value">${accuracy}%</div><div class="result-stat-label">正确率</div></div>
             </div>
             ${!success ? `<button class="btn btn-primary btn-block" onclick="location.reload()">重试</button>` :
-            state.practice.mistakes.length > 0 ? `<button class="btn btn-secondary btn-block" onclick="app.startReviewMistakes()">复习错题</button>` : ''}
-            <button class="btn btn-primary btn-block" onclick="app.closeResult()">返回主页</button>
+            state.practice.mistakes.length > 0 ? `<button class="btn btn-secondary btn-block" onclick="app.startReviewMistakes()">复习错题</button>` : ''
+        }
+    <button class="btn btn-primary btn-block" onclick="app.closeResult()">返回主页</button>
         </div>
-    `;
+        `;
     if (success && state.practice.lessonId) state.user.lessonsCompleted.push(state.practice.lessonId);
     saveState();
 }
@@ -590,14 +757,41 @@ function startLesson(id) {
 
                 // Pass segments for lookup
                 questions.push({
-                    cn: s.cn.replace(/[。？！\!\?\. ]/g, ''), // Remove punct from prompt
+                    cn: s.cn.replace(/[。？！\!\?\. ]/g, ''),
                     answer: s.jp,
                     blocks: [...blocks].sort(() => Math.random() - 0.5),
-                    segments: s.segments, // Add this for pronunciation lookup
+                    segments: s.segments,
                     type: 'sentence-building'
+                });
+
+                // Add Speaking Question (Shadowing)
+                questions.push({
+                    display: s.jp,
+                    romaji: s.segments.map(seg => seg.romaji).join(' '),
+                    cn: s.cn,
+                    audio: s.jp,
+                    audioKana: s.segments.map(seg => seg.kana || seg.text).join('').replace(/[。\. ?！!]/g, ''),
+                    type: 'speaking',
+                    segments: s.segments
                 });
             }
         });
+
+        // Add Matching Question (Pairs)
+        if (lesson.words && lesson.words.length >= 4) {
+            const matchingWords = lesson.words.slice(0, 5).map(wid => wordsData[wid]);
+            // Create pairs
+            const pairs = matchingWords.map((w, i) => ({ id: i, left: w.jp, right: w.cn, matched: false }));
+            // Shuffle visual order
+            questions.push({
+                type: 'matching',
+                title: '单词配对',
+                leftItems: [...pairs].sort(() => Math.random() - 0.5),
+                rightItems: [...pairs].sort(() => Math.random() - 0.5),
+                originalPairs: pairs,
+                solvedCount: 0
+            });
+        }
     } else {
         const kanaSet = lesson.type === 'kana' ? hiragana : katakana;
         const keys = Object.keys(kanaSet).slice(lesson.start, lesson.end);
@@ -609,10 +803,187 @@ function startLesson(id) {
             return { display: k, options, correctIndex: options.indexOf(kanaSet[k]), type: 'kana' };
         });
     }
-    state.practice = { active: true, questions: questions.sort(() => Math.random() - 0.5), currentIndex: 0, correctCount: 0, selectedAnswer: null, builtSentence: [], lessonId: lesson.id, mistakes: [] };
+
+    // Move matching to end
+    const matchingQIdx = questions.findIndex(q => q.type === 'matching');
+    if (matchingQIdx > -1) {
+        questions.push(questions.splice(matchingQIdx, 1)[0]);
+    }
+
+    state.practice = {
+        active: true,
+        questions: questions.sort(() => Math.random() - 0.5), // This sort defeats the manual move above if random. Let's fix.
+        currentIndex: 0,
+        correctCount: 0,
+        selectedAnswer: null,
+        builtSentence: [],
+        lessonId: lesson.id,
+        mistakes: [],
+        matching: { left: null, right: null }, // Matching state
+        isListening: false,
+        speechResult: ''
+    };
+
+    // Ensure matching is LAST if it exists
+    const mIdx = state.practice.questions.findIndex(q => q.type === 'matching');
+    if (mIdx > -1) {
+        state.practice.questions.push(state.practice.questions.splice(mIdx, 1)[0]);
+    }
+
     document.getElementById('practiceModal').classList.add('open');
     renderPractice();
 }
+
+function handleMatchClick(side, id) {
+    const q = state.practice.questions[state.practice.currentIndex];
+
+    // Play sound on click & speak Japanese if it's the left side (Japanese word)
+    soundManager.click();
+    if (side === 'left') {
+        const item = q.leftItems.find(i => i.id === id);
+        if (item) app.speakText(item.left, 'ja');
+    }
+
+    // Update local selection
+    if (!state.practice.matching) state.practice.matching = {};
+
+    // If clicking same side again, update selection
+    state.practice.matching[side] = { id };
+
+    renderPractice();
+
+    // Check match if both sides selected
+    if (state.practice.matching.left && state.practice.matching.right) {
+        const leftId = state.practice.matching.left.id;
+        const rightId = state.practice.matching.right.id;
+
+        if (leftId === rightId) {
+            // Correct Match
+            setTimeout(() => {
+                soundManager.correct();
+
+                // Mark matched but DO NOT remove (removed items often use .invisible or just fail to render)
+                // In renderQuestionContent (matching case), we check item.matched? 'matched' : ''
+                // We should ensure CSS keeps them visible but 'matched' style is applied.
+
+                const leftItem = q.leftItems.find(i => i.id === leftId);
+                const rightItem = q.rightItems.find(i => i.id === rightId);
+
+                if (leftItem) leftItem.matched = true;
+                if (rightItem) rightItem.matched = true;
+
+                q.solvedCount++;
+                state.practice.matching = { left: null, right: null };
+
+                // Check if all solved
+                if (q.solvedCount >= 5 || q.solvedCount >= q.originalPairs.length) {
+                    app.checkAnswer(true); // Auto proceed
+                } else {
+                    renderPractice();
+                }
+            }, 300);
+        } else {
+            // Incorrect
+            setTimeout(() => {
+                soundManager.incorrect();
+                state.practice.matching = { left: null, right: null };
+                renderPractice();
+            }, 500);
+        }
+    }
+}
+
+
+
+function toggleListening() {
+    if (state.practice.isListening) {
+        // Stop
+        state.practice.isListening = false;
+        if (state.recognition) state.recognition.stop();
+        renderPractice();
+    } else {
+        // Start
+        state.practice.isListening = true;
+        state.practice.speechResult = '';
+        renderPractice();
+
+        try {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                showToast("您的浏览器不支持语音识别");
+                state.practice.isListening = false;
+                renderPractice();
+                return;
+            }
+            const recognition = new SpeechRecognition();
+            state.recognition = recognition;
+            recognition.lang = 'ja-JP';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                state.practice.speechResult = transcript;
+                state.practice.isListening = false;
+                checkSpeaking(false, transcript);
+            };
+
+            recognition.onerror = (event) => {
+                console.warn('Speech Error', event.error);
+                state.practice.isListening = false;
+                showToast("听不清楚，请重试");
+                renderPractice();
+            };
+
+            recognition.onend = () => {
+                if (state.practice.isListening) {
+                    state.practice.isListening = false;
+                    renderPractice();
+                }
+            };
+
+            recognition.start();
+        } catch (e) {
+            console.error(e);
+            state.practice.isListening = false;
+            renderPractice();
+        }
+    }
+}
+
+function checkSpeaking(forcePass = false, transcript = '') {
+    const q = state.practice.questions[state.practice.currentIndex];
+
+    // Simple verification
+    let isCorrect = forcePass;
+    if (!forcePass && transcript) {
+        // Very loose check just to encourage speaking
+        isCorrect = true;
+    }
+
+    if (isCorrect) {
+        soundManager.correct();
+        state.practice.correctCount++;
+        addXP(10);
+
+        // Show banner
+        const footer = document.querySelector('.practice-footer');
+        footer.innerHTML = `
+        <div class="feedback-banner correct show">
+                <div class="feedback-icon">✅</div>
+                <div class="feedback-text">
+                    <div class="feedback-title">发音不错！</div>
+                    <div class="feedback-detail">${transcript ? `你说了: ${transcript}` : '继续加油'}</div>
+                </div>
+                <button class="btn btn-success" onclick="app.nextQuestion()">继续</button>
+            </div>
+        `;
+    }
+}
+
+
+
+
 
 function startQuickPractice() { startLesson('n5-1'); }
 function startReviewMistakes() {
@@ -646,7 +1017,7 @@ function addXP(amount) { state.user.xp += amount; createXPParticle(amount); upda
 function checkLevelUp() {
     const oldLevel = state.user.level;
     state.user.level = Math.floor(state.user.xp / 100) + 1;
-    if (state.user.level > oldLevel) { soundManager.levelUp(); showToast(`等级提升：等级 ${state.user.level}`); }
+    if (state.user.level > oldLevel) { soundManager.levelUp(); showToast(`等级提升：等级 ${state.user.level} `); }
 }
 
 function createXPParticle(amount) {
@@ -655,7 +1026,7 @@ function createXPParticle(amount) {
     const rect = xpDisplay.getBoundingClientRect();
     const p = document.createElement('div');
     p.className = 'xp-particle';
-    p.textContent = `+${amount} XP`;
+    p.textContent = `+ ${amount} XP`;
     p.style.left = `${rect.left}px`; p.style.top = `${rect.top}px`;
     document.body.appendChild(p);
     setTimeout(() => p.remove(), 1000);
@@ -667,12 +1038,22 @@ function showSegmentHint(el, idx) {
     const q = state.practice.questions[state.practice.currentIndex];
     const seg = q.segments[idx];
     if (!seg) return;
+
+    // Play interaction sound for feedback
     soundManager.click();
-    // Fix: Clean audio input
-    ttsManager.speak((seg.kana || seg.text).replace(/[\。\.]/g, ''), 0.9, 'ja');
+
+    // determine text: prefer kana for pronunciation, fallback to text
+    const text = (seg.kana || seg.text || '').replace(/[。\. ?！!]/g, '');
+
+    // Use the unified speakText function
+    if (text) {
+        app.speakText(text, 'ja');
+    }
+
     const wasActive = el.classList.contains('active');
     document.querySelectorAll('.segment-wrapper').forEach(w => w.classList.remove('active'));
     if (!wasActive) el.classList.add('active');
+
     clearTimeout(el.hintTimeout);
     el.hintTimeout = setTimeout(() => el.classList.remove('active'), 3000);
 }
@@ -701,7 +1082,7 @@ function removeBuildingBlock(builtIdx) {
     renderPractice();
 }
 
-window.app = { startLesson, startQuickPractice, selectAnswer, checkAnswer, nextQuestion, prevQuestion, closePractice, closeResult, showKanaDetail, speakText, showSegmentHint, addBuildingBlock, removeBuildingBlock, startReviewMistakes };
+window.app = { startLesson, startQuickPractice, selectAnswer, checkAnswer, nextQuestion, prevQuestion, closePractice, closeResult, showKanaDetail, speakText, showSegmentHint, addBuildingBlock, removeBuildingBlock, startReviewMistakes, handleMatchClick, toggleListening, checkSpeaking };
 
 document.addEventListener('DOMContentLoaded', () => {
     loadState();
