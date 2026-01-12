@@ -176,7 +176,9 @@ const ttsManager = {
             // Simple heuristic: if text contains kana, force jap
             if (/[\u3040-\u309F\u30A0-\u30FF]/.test(text)) leParam = '&le=jap';
 
-            const url = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(text)}${leParam}`;
+            // Fix: Remove spaces and add timestamp to force reload
+            const cleanText = text.replace(/\s+/g, '');
+            const url = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(cleanText)}${leParam}&_t=${Date.now()}`;
             audio.src = url;
 
             // Visual Feedback
@@ -357,11 +359,10 @@ function renderPractice() {
                     ${q.segments ?
             `<div class="sentence-segments">
                             ${q.segments.map((seg, idx) => {
-                // Fix: Hide punctuation per user request
                 if (!seg.text || ['。', '？', '！', '.', '?', '!'].includes(seg.text)) return ''; // Return empty string to hide
                 return `<div class="segment-wrapper" onclick="app.showSegmentHint(this, ${idx})"><div class="segment-text">${seg.text}</div><div class="segment-hint"><div class="hint-romaji">${(seg.romaji || '').toLowerCase()}</div><div class="hint-cn">${seg.cn}</div></div></div>`;
             }).join('')}
-                        </div>` : `<div class="question-kana" onclick="app.speakText('${textToSpeak.replace(/[\。\.]/g, '')}', 'ja')">${q.display}</div>`
+                        </div>` : `<div class="question-kana" onclick="app.speakText('${textToSpeak.replace(/[\。\.\s]/g, '')}', 'ja')">${q.display}</div>`
         }
                 </div>
                 <div class="options-grid">${q.options.map((opt, i) => `<button class="option-btn" onclick="app.selectAnswer(${i})">${opt}</button>`).join('')}</div>

@@ -1622,12 +1622,12 @@ body {
     background: var(--bg-card);
     border: 2px solid var(--border-color, #e5e7eb);
     color: var(--text-secondary);
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 700;
     cursor: pointer;
     margin-right: 12px;
-    padding: 8px 16px;
-    border-radius: 12px;
+    padding: 4px 12px;
+    border-radius: 8px;
     transition: all 0.2s ease;
     display: inline-flex;
     align-items: center;
