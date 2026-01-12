@@ -164,22 +164,25 @@ const soundManager = {
 
 // Audio & TTS Management (Using Youdao Online API for natural voice)
 const ttsManager = {
-    audio: new Audio(),
-    speak(text) {
+    speak(text, rate = 0.9, lang = 'ja-JP') {
         if (!text) return;
         try {
-            // Cancel previous audio
-            this.audio.pause();
-            this.audio.currentTime = 0;
+            // Android Best Practice: Create new Audio instance for every play to avoid state issues
+            const audio = new Audio();
 
-            // Use Youdao Dictionary API (Public, reliable in China)
-            // le=jap for Japanese
-            const url = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(text)}&le=jap`;
+            // Determine API language param: le=jap for Japanese, le=eng for English, default (empty) for others (Chinese)
+            let leParam = '';
+            if (lang && lang.includes('ja')) leParam = '&le=jap';
+            // Simple heuristic: if text contains kana, force jap
+            if (/[\u3040-\u309F\u30A0-\u30FF]/.test(text)) leParam = '&le=jap';
 
-            this.audio.src = url;
+            const url = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(text)}${leParam}`;
+            audio.src = url;
 
-            // Handle Loading Errors
-            this.audio.onerror = (e) => {
+            // Visual Feedback
+            // showToast(`播放: ${text}`); // Optional: debug feedback
+
+            audio.onerror = (e) => {
                 console.warn('Audio File Error', e);
                 // Fallback or silent fail (toast is too intrusive for every click if network is bad)
                 const t = document.getElementById('toast');
@@ -188,11 +191,10 @@ const ttsManager = {
                 }
             };
 
-            const playPromise = this.audio.play();
+            const playPromise = audio.play();
             if (playPromise !== undefined) {
                 playPromise.catch(error => {
                     console.warn('Audio Play Blocked', error);
-                    // Usually due to no user interaction yet, but we have lazy init now
                 });
             }
         } catch (e) {
@@ -376,14 +378,24 @@ function selectAnswer(index) {
     const q = state.practice.questions[state.practice.currentIndex];
     const optionText = q.options[index];
 
-    // Only speak if it's Kana/Japanese practice
+    // Better Feedback: Always try to speak when selecting an answer
+    // For Kana: Speak the character
+    // For Word: Speak the Japanese word corresponding to the selected Chinese meaning
     if (q.type === 'kana') {
         let textToSpeak = optionText;
-        // Convert romaji back to kana if needed (though options are usually kana in kana mode)
+        // Convert romaji back to kana if needed
         for (const [k, v] of Object.entries(hiragana)) { if (v === optionText) { textToSpeak = k; break; } }
         for (const [k, v] of Object.entries(katakana)) { if (v === optionText) { textToSpeak = k; break; } }
         ttsManager.speak(textToSpeak, 1.0, 'ja-JP');
+    } else if (q.type === 'word') {
+        // If it's a word question, the options are meanings (CN). 
+        // If user clicks the generic CN option, we should ideally speak the JP word IF it is correct?
+        // Or just speak the JP word of the *current question* to reinforce?
+        // Let's speak the Question's JP Word (q.audio) to reinforce the sound.
+        if (q.audio) ttsManager.speak(q.audio, 1.0, 'ja-JP');
     }
+    // For sentences, maybe too long to speak on every click.
+
 
     // Update UI: Clear formatting from all, then select the click one
     document.querySelectorAll('.option-btn').forEach((btn, i) => {
@@ -483,7 +495,8 @@ function startLesson(id) {
         lesson.sentences.forEach(s => {
             // Remove periods from sentence options
             const options = [s.cn.replace(/。/g, ''), '还是学生吗', '田中先生是学生', '我不去学校'].sort(() => Math.random() - 0.5);
-            questions.push({ display: s.jp.replace(/。/g, ''), audio: s.jp, segments: s.segments, options, correctIndex: options.indexOf(s.cn.replace(/。/g, '')), type: 'sentence' });
+            // Fix: remove period from audio source too
+            questions.push({ display: s.jp.replace(/。/g, ''), audio: s.jp.replace(/。/g, ''), segments: s.segments, options, correctIndex: options.indexOf(s.cn.replace(/。/g, '')), type: 'sentence' });
             if (s.segments) {
                 // Filter out punctuation completely for blocks
                 const blocks = s.segments.filter(seg => seg.text && !['。', '？', '！', '!', '?', '.'].includes(seg.text)).map(seg => seg.text);
