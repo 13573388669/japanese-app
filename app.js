@@ -163,24 +163,58 @@ const soundManager = {
 };
 
 const ttsManager = {
+    voices: [],
+    activeUtterance: null, // Prevent GC
+    init() {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                this.voices = window.speechSynthesis.getVoices();
+            };
+            this.voices = window.speechSynthesis.getVoices();
+        }
+    },
     speak(text, rate = 0.9, forceLang = null) {
         if (!window.speechSynthesis) return;
+
+        // Ensure voices are loaded
+        if (this.voices.length === 0) {
+            this.voices = window.speechSynthesis.getVoices();
+        }
+
         try {
             window.speechSynthesis.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
 
-            let lang = forceLang || 'ja-JP';
+            const utter = new SpeechSynthesisUtterance(text);
+            this.activeUtterance = utter; // Keep reference
+
+            let targetLang = forceLang || 'ja-JP';
             if (!forceLang) {
                 const hasJP = /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/.test(text);
-                lang = hasJP ? 'ja-JP' : 'zh-CN';
+                targetLang = hasJP ? 'ja-JP' : 'zh-CN';
             }
 
-            utter.lang = lang;
+            utter.lang = targetLang;
             utter.rate = rate;
+
+            // Explicit Voice Selection for Android
+            const voice = this.voices.find(v => v.lang === targetLang || v.lang === targetLang.replace('-', '_'));
+            if (voice) {
+                utter.voice = voice;
+            }
+
+            utter.onend = () => { this.activeUtterance = null; };
+            utter.onerror = (e) => {
+                console.warn('TTS Error', e);
+                this.activeUtterance = null;
+            };
+
             window.speechSynthesis.speak(utter);
+
+            // Debug: Show toast if it fails silently? No, keep it clean for now.
         } catch (e) { console.warn('TTS speak error', e); }
     }
 };
+ttsManager.init();
 
 let state = {
     user: { xp: 0, level: 1, hearts: 5, streak: 0, lessonsCompleted: [] },
