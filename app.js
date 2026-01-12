@@ -101,7 +101,73 @@ const lessons = [
     },
     { id: 'n5-2', name: '日常问候 (N5)', type: 'word', words: ['w6', 'w7', 'w8', 'w9', 'w10'], sentences: [] },
     { id: 'h-1', name: '清音 (あ行)', type: 'kana', start: 0, end: 5 },
-    { id: 'h-2', name: '清音 (か行)', type: 'kana', start: 5, end: 10 }
+    { id: 'h-2', name: '清音 (か行)', type: 'kana', start: 5, end: 10 },
+    // NHK Easy Japanese Lessons
+    {
+        id: 'nhk-1',
+        name: '#1 问路',
+        type: 'word',
+        words: ['nhk_w1', 'nhk_w2'],
+        sentences: [{
+            jp: 'はるさんハウスはどこですか',
+            cn: '春婆婆之家在哪里',
+            segments: [
+                { text: 'はるさんハウス', kana: 'はるさんはうす', romaji: 'harusan hausu', cn: '春婆婆之家' },
+                { text: 'は', kana: 'は', romaji: 'wa', cn: '(助词)' },
+                { text: 'どこ', kana: 'どこ', romaji: 'doko', cn: '哪里' },
+                { text: 'ですか', kana: 'ですか', romaji: 'desuka', cn: '是...吗' }
+            ]
+        }]
+    },
+    {
+        id: 'nhk-2',
+        name: '#2 自我介绍',
+        type: 'word',
+        words: ['nhk_w3', 'w2'], // w2 is gakusei
+        sentences: [{
+            jp: 'タムです。学生です',
+            cn: '我叫心心。是学生',
+            segments: [
+                { text: 'タム', kana: 'たむ', romaji: 'tamu', cn: '心心' },
+                { text: 'です', kana: 'です', romaji: 'desu', cn: '是' },
+                { text: '学生', kana: 'がくせい', romaji: 'gakusei', cn: '学生' },
+                { text: 'です', kana: 'です', romaji: 'desu', cn: '是' }
+            ]
+        }]
+    },
+    {
+        id: 'nhk-3',
+        name: '#3 来自哪里',
+        type: 'word',
+        words: ['nhk_w4', 'nhk_w5'],
+        sentences: [{
+            jp: 'ベトナムから来ました',
+            cn: '来自越南',
+            segments: [
+                { text: 'ベトナム', kana: 'べとなむ', romaji: 'betonamu', cn: '越南' },
+                { text: 'から', kana: 'から', romaji: 'kara', cn: '从' },
+                { text: '来ました', kana: 'きました', romaji: 'kimashita', cn: '来了' }
+            ]
+        }]
+    },
+    {
+        id: 'nhk-4',
+        name: '#4 将要做什么',
+        type: 'word',
+        words: ['nhk_w6', 'nhk_w7', 'nhk_w8'],
+        sentences: [{
+            jp: '大学で日本語を勉強します',
+            cn: '在大学学日语',
+            segments: [
+                { text: '大学', kana: 'だいがく', romaji: 'daigaku', cn: '大学' },
+                { text: 'で', kana: 'で', romaji: 'de', cn: '在' },
+                { text: '日本語', kana: 'にほんご', romaji: 'nihongo', cn: '日语' },
+                { text: 'を', kana: 'を', romaji: 'wo', cn: '(助词)' },
+                { text: '勉強', kana: 'べんきょう', romaji: 'benkyou', cn: '学习' },
+                { text: 'します', kana: 'します', romaji: 'shimasu', cn: '做' }
+            ]
+        }]
+    }
 ];
 
 const wordsData = {
@@ -114,7 +180,16 @@ const wordsData = {
     'w7': { jp: 'こんにちは', kana: 'こんにちは', romaji: 'konnichiwa', cn: '你好' },
     'w8': { jp: 'こんばんは', kana: 'こんばんは', romaji: 'konbanwa', cn: '晚上好' },
     'w9': { jp: 'さようなら', kana: 'さようなら', romaji: 'sayounara', cn: '再见' },
-    'w10': { jp: 'ありがとう', kana: 'ありがとう', romaji: 'arigatou', cn: '谢谢' }
+    'w10': { jp: 'ありがとう', kana: 'ありがとう', romaji: 'arigatou', cn: '谢谢' },
+    // NHK Words
+    'nhk_w1': { jp: 'はるさんハウス', kana: 'はるさんはうす', romaji: 'harusan hausu', cn: '春婆婆之家' },
+    'nhk_w2': { jp: 'どこ', kana: 'どこ', romaji: 'doko', cn: '哪里' },
+    'nhk_w3': { jp: 'タム', kana: 'たむ', romaji: 'tamu', cn: '心心' },
+    'nhk_w4': { jp: 'ベトナム', kana: 'べとなむ', romaji: 'betonamu', cn: '越南' },
+    'nhk_w5': { jp: '来ました', kana: 'きました', romaji: 'kimashita', cn: '来了' },
+    'nhk_w6': { jp: '大学', kana: 'だいがく', romaji: 'daigaku', cn: '大学' },
+    'nhk_w7': { jp: '日本語', kana: 'にほんご', romaji: 'nihongo', cn: '日语' },
+    'nhk_w8': { jp: '勉強', kana: 'べんきょう', romaji: 'benkyou', cn: '学习' }
 };
 
 const soundManager = {
