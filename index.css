@@ -1616,3 +1616,32 @@ body {
     font-size: 0.85rem;
     color: var(--text-secondary);
 }
+
+/* Practice Navigation Button */
+.practice-nav-btn {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color, #e5e7eb);
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-right: 12px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 0 var(--border-color, #e5e7eb);
+}
+
+.practice-nav-btn:hover {
+    background: var(--bg-tertiary);
+    transform: translateY(-1px);
+    border-color: var(--text-secondary);
+}
+
+.practice-nav-btn:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}

@@ -357,10 +357,11 @@ function renderPractice() {
                     ${q.segments ?
             `<div class="sentence-segments">
                             ${q.segments.map((seg, idx) => {
-                if (!seg.text || ['。', '？', '！'].includes(seg.text)) return `<span class="punctuation">${seg.text}</span>`;
+                // Fix: Hide punctuation per user request
+                if (!seg.text || ['。', '？', '！', '.', '?', '!'].includes(seg.text)) return ''; // Return empty string to hide
                 return `<div class="segment-wrapper" onclick="app.showSegmentHint(this, ${idx})"><div class="segment-text">${seg.text}</div><div class="segment-hint"><div class="hint-romaji">${(seg.romaji || '').toLowerCase()}</div><div class="hint-cn">${seg.cn}</div></div></div>`;
             }).join('')}
-                        </div>` : `<div class="question-kana" onclick="app.speakText('${textToSpeak.replace(/'/g, "\\'")}', 'ja')">${q.display}</div>`
+                        </div>` : `<div class="question-kana" onclick="app.speakText('${textToSpeak.replace(/[\。\.]/g, '')}', 'ja')">${q.display}</div>`
         }
                 </div>
                 <div class="options-grid">${q.options.map((opt, i) => `<button class="option-btn" onclick="app.selectAnswer(${i})">${opt}</button>`).join('')}</div>
@@ -591,7 +592,8 @@ function showSegmentHint(el, idx) {
     const seg = q.segments[idx];
     if (!seg) return;
     soundManager.click();
-    ttsManager.speak(seg.kana || seg.text, 0.9, 'ja');
+    // Fix: Clean audio input
+    ttsManager.speak((seg.kana || seg.text).replace(/[\。\.]/g, ''), 0.9, 'ja');
     const wasActive = el.classList.contains('active');
     document.querySelectorAll('.segment-wrapper').forEach(w => w.classList.remove('active'));
     if (!wasActive) el.classList.add('active');
