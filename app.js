@@ -333,6 +333,7 @@ function renderPractice() {
     container.innerHTML = `
         <div class="practice-header">
             <button class="practice-close" onclick="app.closePractice()">✕</button>
+            ${state.practice.currentIndex > 0 ? `<button class="practice-nav-btn" onclick="app.prevQuestion()">上一页</button>` : ''}
             <div class="practice-progress"><div class="progress-bar"><div class="progress-fill" style="width: ${progress}%"></div></div></div>
             <div class="practice-hearts">❤️ ${state.user.hearts}</div>
         </div>
@@ -350,7 +351,7 @@ function renderPractice() {
                 </div>
             ` : `
                 <div class="question-kana-container">
-                    <div class="speaker-icon" onclick="app.speakText('${textToSpeak.replace(/'/g, "\\'")}', 'ja')">
+                    <div class="speaker-icon" onclick="event.stopPropagation(); app.speakText('${textToSpeak.replace(/[\。\.]/g, '')}', 'ja')">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18.03,19.86 21,16.28 21,12C21,7.72 18.03,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16.02C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z"></path></svg>
                     </div>
                     ${q.segments ?
@@ -453,6 +454,15 @@ function nextQuestion() {
     else showResult(true);
 }
 
+function prevQuestion() {
+    if (state.practice.currentIndex > 0) {
+        state.practice.currentIndex--;
+        state.practice.selectedAnswer = null;
+        state.practice.builtSentence = []; // Reset state
+        renderPractice();
+    }
+}
+
 function showResult(success) {
     const container = document.querySelector('.practice-container');
     const accuracy = Math.round((state.practice.correctCount / state.practice.questions.length) * 100);
@@ -495,7 +505,7 @@ function startLesson(id) {
         lesson.sentences.forEach(s => {
             // Remove periods from sentence options
             const options = [s.cn.replace(/。/g, ''), '还是学生吗', '田中先生是学生', '我不去学校'].sort(() => Math.random() - 0.5);
-            // Fix: remove period from audio source too
+            // Fix: remove period from audio source AND display
             questions.push({ display: s.jp.replace(/。/g, ''), audio: s.jp.replace(/。/g, ''), segments: s.segments, options, correctIndex: options.indexOf(s.cn.replace(/。/g, '')), type: 'sentence' });
             if (s.segments) {
                 // Filter out punctuation completely for blocks
@@ -613,7 +623,7 @@ function removeBuildingBlock(builtIdx) {
     renderPractice();
 }
 
-window.app = { startLesson, startQuickPractice, selectAnswer, checkAnswer, nextQuestion, closePractice, closeResult, showKanaDetail, speakText, showSegmentHint, addBuildingBlock, removeBuildingBlock, startReviewMistakes };
+window.app = { startLesson, startQuickPractice, selectAnswer, checkAnswer, nextQuestion, prevQuestion, closePractice, closeResult, showKanaDetail, speakText, showSegmentHint, addBuildingBlock, removeBuildingBlock, startReviewMistakes };
 
 document.addEventListener('DOMContentLoaded', () => {
     loadState();
