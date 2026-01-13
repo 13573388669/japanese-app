@@ -1,4 +1,4 @@
-﻿const hiragana = {
+const hiragana = {
     'あ': 'a', 'い': 'i', 'う': 'u', 'え': 'e', 'お': 'o',
     'か': 'ka', 'き': 'ki', 'く': 'ku', 'け': 'ke', 'こ': 'ko',
     'さ': 'sa', 'し': 'shi', 'す': 'su', 'せ': 'se', 'そ': 'so',
@@ -107,18 +107,28 @@ const lessons = [
         sentences: []
     },
     {
-        id: 'h-1',
-        name: '清音 (あ行)',
-        type: 'kana',
-        start: 0,
-        end: 5
+        id: 'hiragana-all',
+        name: '平假名全集',
+        type: 'kana-all',
+        kanaType: 'hiragana',
+        icon: 'あ',
+        chapters: [
+            { name: '清音', start: 0, end: 46 },
+            { name: '浊音 & 半浊音', start: 46, end: 71 },
+            { name: '拗音', start: 71, end: 104 }
+        ]
     },
     {
-        id: 'h-2',
-        name: '清音 (か行)',
-        type: 'kana',
-        start: 5,
-        end: 10
+        id: 'katakana-all',
+        name: '片假名全集',
+        type: 'kana-all',
+        kanaType: 'katakana',
+        icon: 'ア',
+        chapters: [
+            { name: '清音', start: 0, end: 46 },
+            { name: '浊音 & 半浊音', start: 46, end: 71 },
+            { name: '拗音', start: 71, end: 104 }
+        ]
     },
     // 场景课程：购物
     {
@@ -179,13 +189,13 @@ const lessons = [
             }
         ]
     },
-    // 场景课程：数字与时间
+    // 场景课程：时间表达
     {
         id: 'scene-time-1',
-        name: '数字与时间',
+        name: '时间与日期',
         type: 'word',
         icon: '🕐',
-        words: ['num_1', 'num_2', 'num_3', 'time_1', 'time_2'],
+        words: ['time_1', 'time_2', 'time_morning', 'time_noon', 'time_night'],
         sentences: [
             {
                 jp: '今、何時ですか。',
@@ -195,6 +205,17 @@ const lessons = [
                     { text: '、', kana: '、', romaji: '', cn: '' },
                     { text: '何時', kana: 'なんじ', romaji: 'nanji', cn: '几点' },
                     { text: 'ですか', kana: 'ですか', romaji: 'desuka', cn: '是...吗' },
+                    { text: '。', kana: '。', romaji: '', cn: '' }
+                ]
+            },
+            {
+                jp: '今は三時です。',
+                cn: '现在是三点。',
+                segments: [
+                    { text: '今', kana: 'いま', romaji: 'ima', cn: '现在' },
+                    { text: 'は', kana: 'は', romaji: 'wa', cn: '(助)' },
+                    { text: '三時', kana: 'sanji', romaji: 'sanji', cn: '三点' },
+                    { text: 'です', kana: 'です', romaji: 'desu', cn: '是' },
                     { text: '。', kana: '。', romaji: '', cn: '' }
                 ]
             }
@@ -216,6 +237,80 @@ const lessons = [
                     { text: 'は', kana: 'は', romaji: 'wa', cn: '(助词)' },
                     { text: 'どこ', kana: 'どこ', romaji: 'doko', cn: '哪里' },
                     { text: 'ですか', kana: 'ですか', romaji: 'desuka', cn: '是...吗' },
+                    { text: '。', kana: '。', romaji: '', cn: '' }
+                ]
+            }
+        ]
+    },
+    // 新增课程：数字进阶
+    // 场景课程：数字全集 (1-10)
+    {
+        id: 'scene-numbers-full',
+        name: '数字基础 (1-10)',
+        type: 'word',
+        icon: '🔢',
+        words: ['num_1', 'num_2', 'num_3', 'num_4', 'num_5', 'num_6', 'num_7', 'num_8', 'num_9', 'num_10'],
+        sentences: [
+            {
+                jp: '一、二、三。',
+                cn: '一、二、三。',
+                segments: [
+                    { text: '一', kana: 'いち', romaji: 'ichi', cn: '一' },
+                    { text: '二', kana: 'に', romaji: 'ni', cn: '二' },
+                    { text: '三', kana: 'さん', romaji: 'san', cn: '三' },
+                    { text: '。', kana: '。', romaji: '', cn: '' }
+                ]
+            },
+            {
+                jp: '八、九、十。',
+                cn: '八、九、十。',
+                segments: [
+                    { text: '八', kana: 'はち', romaji: 'hachi', cn: '八' },
+                    { text: '九', kana: 'きゅう', romaji: 'kyuu', cn: '九' },
+                    { text: '十', kana: 'じゅう', romaji: 'juu', cn: '十' },
+                    { text: '。', kana: '。', romaji: '', cn: '' }
+                ]
+            }
+        ]
+    },
+    // 场景课程：大数字
+    {
+        id: 'scene-numbers-big',
+        name: '数字进阶 (百千万)',
+        type: 'word',
+        icon: '💰',
+        words: ['num_100', 'num_1000', 'num_10000'],
+        sentences: [
+            {
+                jp: 'これは百円です。',
+                cn: '这是一百日元。',
+                segments: [
+                    { text: 'これ', kana: 'これ', romaji: 'kore', cn: '这个' },
+                    { text: 'は', kana: 'は', romaji: 'wa', cn: '(助)' },
+                    { text: '百', kana: 'ひゃく', romaji: 'hyaku', cn: '百' },
+                    { text: '円', kana: 'えん', romaji: 'en', cn: '日元' },
+                    { text: 'です', kana: 'です', romaji: 'desu', cn: '是' },
+                    { text: '。', kana: '。', romaji: '', cn: '' }
+                ]
+            }
+        ]
+    },
+    // 新增课程：时间表达
+    {
+        id: 'n5-4',
+        name: '时间与日期 (N5)',
+        type: 'word',
+        icon: '📅',
+        words: ['time_morning', 'time_noon', 'time_night', 'time_today', 'time_tomorrow', 'time_yesterday'],
+        sentences: [
+            {
+                jp: '今日は土曜日です。',
+                cn: '今天是星期六。',
+                segments: [
+                    { text: '今日', kana: 'きょう', romaji: 'kyou', cn: '今天' },
+                    { text: 'は', kana: 'は', romaji: 'wa', cn: '(助)' },
+                    { text: '土曜日', kana: 'どようび', romaji: 'doyoubi', cn: '星期六' },
+                    { text: 'です', kana: 'です', romaji: 'desu', cn: '是' },
                     { text: '。', kana: '。', romaji: '', cn: '' }
                 ]
             }
@@ -261,7 +356,28 @@ const wordsData = {
     'travel_2': { jp: 'トイレ', kana: 'といれ', romaji: 'toire', cn: '厕所' },
     'travel_3': { jp: 'どこ', kana: 'どこ', romaji: 'doko', cn: '哪里' },
     'travel_4': { jp: 'ホテル', kana: 'ほてる', romaji: 'hoteru', cn: '酒店' },
-    'travel_5': { jp: 'バス', kana: 'ばす', romaji: 'basu', cn: '巴士' }
+    'travel_5': { jp: 'バス', kana: 'ばす', romaji: 'basu', cn: '巴士' },
+
+    // Numbers Extended
+    'num_4': { jp: '四', kana: 'よん', romaji: 'yon', cn: '四' },
+    'num_5': { jp: '五', kana: 'ご', romaji: 'go', cn: '五' },
+    'num_6': { jp: '六', kana: 'ろく', romaji: 'roku', cn: '六' },
+    'num_7': { jp: '七', kana: 'なな', romaji: 'nana', cn: '七' },
+    'num_8': { jp: '八', kana: 'はち', romaji: 'hachi', cn: '八' },
+    'num_9': { jp: '九', kana: 'きゅう', romaji: 'kyuu', cn: '九' },
+    'num_10': { jp: '十', kana: 'じゅう', romaji: 'juu', cn: '十' },
+    'num_100': { jp: '百', kana: 'ひゃく', romaji: 'hyaku', cn: '百' },
+    'num_1000': { jp: '千', kana: 'せん', romaji: 'sen', cn: '千' },
+    'num_10000': { jp: '万', kana: 'まん', romaji: 'man', cn: '万' },
+
+    // Time Extended
+    'time_morning': { jp: '朝', kana: 'あさ', romaji: 'asa', cn: '早上' },
+    'time_noon': { jp: '昼', kana: 'ひる', romaji: 'hiru', cn: '中午' },
+    'time_night': { jp: '夜', kana: 'よる', romaji: 'yoru', cn: '晚上' },
+    'time_today': { jp: '今日', kana: 'きょう', romaji: 'kyou', cn: '今天' },
+    'time_tomorrow': { jp: '明日', kana: 'あした', romaji: 'ashita', cn: '明天' },
+    'time_yesterday': { jp: '昨日', kana: 'きのう', romaji: 'kinou', cn: '昨天' },
+    'time_3oclock': { jp: '三時', kana: 'さんじ', romaji: 'sanji', cn: '三点' }
 };
 
 const soundManager = {
@@ -313,41 +429,71 @@ const soundManager = {
 const ttsManager = {
     speak(text, rate = 0.9, lang = 'ja-JP') {
         if (!text) return;
-        try {
-            // Android Best Practice: Create new Audio instance for every play to avoid state issues
+        const cleanText = text.replace(/\s+/g, '');
+        const speechLang = (lang === 'ja' || lang === 'ja-JP') ? 'ja-JP' : 'zh-CN';
+
+        // Helper to try multiple sources
+        const sources = [
+            `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(cleanText)}&le=jap&type=2`,
+            `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(cleanText)}&le=jap&type=1`,
+            `https://fanyi.baidu.com/getvoice?lan=${speechLang === 'ja-JP' ? 'jp' : 'zh'}&text=${encodeURIComponent(cleanText)}`
+        ];
+
+        let sourceIndex = 0;
+        const tryNextSource = () => {
+            if (sourceIndex >= sources.length) {
+                console.warn('All online TTS sources failed. Using fallback.');
+                this.fallbackSpeak(cleanText, rate, speechLang);
+                return;
+            }
+
+            if (window._activeAudio) {
+                window._activeAudio.pause();
+                window._activeAudio.onended = null;
+                window._activeAudio.onerror = null;
+            }
+
             const audio = new Audio();
-
-            // Determine API language param: le=jap for Japanese, le=eng for English, default (empty) for others (Chinese)
-            let leParam = '';
-            if (lang && lang.includes('ja')) leParam = '&le=jap';
-            // Simple heuristic: if text contains kana, force jap
-            if (/[\u3040-\u309F\u30A0-\u30FF]/.test(text)) leParam = '&le=jap';
-
-            // Fix: Remove spaces and add timestamp to force reload
-            const cleanText = text.replace(/\s+/g, '');
-            const url = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(cleanText)}${leParam}&_t=${Date.now()}`;
-            audio.src = url;
-
-            // Visual Feedback
-            // showToast(`播放: ${text}`); // Optional: debug feedback
-
-            audio.onerror = (e) => {
-                console.warn('Audio File Error', e);
-                // Fallback or silent fail (toast is too intrusive for every click if network is bad)
-                const t = document.getElementById('toast');
-                if (t && !t.classList.contains('visible')) {
-                    showToast('音频加载失败 (请检查网络)');
-                }
-            };
+            window._activeAudio = audio;
+            audio.src = sources[sourceIndex++];
 
             const playPromise = audio.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.warn('Audio Play Blocked', error);
-                });
+            if (playPromise) {
+                playPromise.catch(() => tryNextSource());
             }
-        } catch (e) {
-            console.warn('Audio System Error', e);
+            audio.onerror = () => tryNextSource();
+
+            // Safety timeout for slow response
+            setTimeout(() => {
+                if (audio.paused && !audio.ended && window._activeAudio === audio) {
+                    tryNextSource();
+                }
+            }, 1500);
+        };
+
+        tryNextSource();
+    },
+
+    fallbackSpeak(text, rate, lang) {
+        if (!window.speechSynthesis) return;
+
+        const doSpeak = () => {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = lang;
+            utterance.rate = rate;
+            const voices = window.speechSynthesis.getVoices();
+            const jaVoice = voices.find(v => v.lang.startsWith('ja')) || voices.find(v => v.lang.includes('JP'));
+            if (jaVoice) utterance.voice = jaVoice;
+            window.speechSynthesis.speak(utterance);
+        };
+
+        if (window.speechSynthesis.getVoices().length === 0) {
+            window.speechSynthesis.onvoiceschanged = doSpeak;
+            // Force a call just in case it doesn't fire
+            setTimeout(doSpeak, 100);
+        } else {
+            doSpeak();
         }
     }
 };
@@ -357,7 +503,7 @@ let state = {
     user: { xp: 0, level: 1, hearts: 5, streak: 0, lessonsCompleted: [] },
     currentPath: 'dashboard',
     history: ['dashboard'],
-    practice: { active: false, questions: [], currentIndex: 0, correctCount: 0, selectedAnswer: null, builtSentence: [], lessonId: null, mistakes: [] }
+    practice: { active: false, questions: [], currentIndex: 0, correctCount: 0, selectedAnswer: null, builtSentence: [], lessonId: null, mistakes: [], activeHintId: null }
 };
 
 function updateNavbar() {
@@ -405,11 +551,19 @@ function renderPage(path, push = true) {
 }
 
 function renderDashboard() {
+    const hour = new Date().getHours();
+    let greeting = '你好';
+    if (hour >= 5 && hour < 11) greeting = '早上好';
+    else if (hour >= 11 && hour < 14) greeting = '中午好';
+    else if (hour >= 14 && hour < 18) greeting = '下午好';
+    else if (hour >= 18 && hour < 24) greeting = '晚上好';
+    else greeting = '夜深了';
+
     const container = document.getElementById('mainContent');
     container.innerHTML = `
         <div class="dashboard">
             <div class="welcome-card">
-                <h1 class="welcome-title">中午好，${state.user.level} 级的学习者！</h1>
+                <h1 class="welcome-title">${greeting}，${state.user.level} 级的学习者！</h1>
                 <p class="welcome-subtitle">今天也要加油哦！</p>
                 <button class="btn btn-primary" onclick="app.startQuickPractice()">开始快速练习</button>
             </div>
@@ -438,7 +592,10 @@ function renderLessons() {
                     <div class="lesson-icon">${l.icon || (l.type === 'kana' ? '🔤' : '📖')}</div>
                     <div class="lesson-info">
                         <div class="lesson-name">${l.name}</div>
-                        <div class="lesson-type">${l.type === 'kana' ? '五十音' : '词汇与短句'}</div>
+                    <div class="lesson-type">${l.type === 'kana-all' ? '从清音到拗音全覆盖' :
+            l.type === 'kana' ? '五十音局部练习' :
+                '词汇与短句实战'
+        }</div>
                     </div>
                 </div>
             `).join('')}
@@ -458,10 +615,28 @@ function renderKanaPage() {
                 </div>
             </div>
             <div id="hiraganaGrid" class="kana-grid">
-                ${Object.entries(hiragana).map(([k, v]) => `<div class="kana-card" onclick="app.showKanaDetail('${k}', '${v}')"><div class="kana-char">${k}</div><div class="kana-romaji">${v}</div></div>`).join('')}
+                ${Object.entries(hiragana).map(([k, v]) => `
+                    <div class="kana-character-box">
+                        <div class="kana-card" onclick="app.showKanaDetail(this, '${k}', '${v}')">
+                            <div class="kana-char">${k}</div>
+                            <div class="kana-romaji">${v}</div>
+                        </div>
+                        <div class="kana-bubble">
+                            <div class="hint-romaji">${v}</div>
+                        </div>
+                    </div>`).join('')}
             </div>
             <div id="katakanaGrid" class="kana-grid" style="display: none">
-                ${Object.entries(katakana).map(([k, v]) => `<div class="kana-card" onclick="app.showKanaDetail('${k}', '${v}')"><div class="kana-char">${k}</div><div class="kana-romaji">${v}</div></div>`).join('')}
+                ${Object.entries(katakana).map(([k, v]) => `
+                    <div class="kana-character-box">
+                        <div class="kana-card" onclick="app.showKanaDetail(this, '${k}', '${v}')">
+                            <div class="kana-char">${k}</div>
+                            <div class="kana-romaji">${v}</div>
+                        </div>
+                        <div class="kana-bubble">
+                            <div class="hint-romaji">${v}</div>
+                        </div>
+                    </div>`).join('')}
             </div>
         </div>
     `;
@@ -482,10 +657,14 @@ function renderPractice() {
     container.innerHTML = `
         <div class="practice-header">
             <button class="practice-close" onclick="app.closePractice()">✕</button>
-            ${state.practice.currentIndex > 0 ? `<button class="practice-nav-btn" onclick="app.prevQuestion()">上一页</button>` : ''}
+            <div style="display:flex; gap:10px;">
+                ${state.practice.currentIndex > 0 ? `<button class="practice-nav-btn" onclick="app.prevQuestion()">上一页</button>` : ''}
+                <button class="practice-nav-btn" onclick="app.checkAnswer(true)" style="opacity:0.5; font-size:0.8rem;">跳过本页</button>
+            </div>
             <div class="practice-progress"><div class="progress-bar"><div class="progress-fill" style="width: ${progress}%"></div></div></div>
             <div class="practice-hearts">❤️ ${state.user.hearts}</div>
         </div>
+        ${q.chapterName ? `<div class="chapter-indicator">当前章节：${q.chapterName}</div>` : ''}
         <div class="practice-content">
             ${renderQuestionContent(q)}
         </div>
@@ -512,20 +691,29 @@ function renderQuestionContent(q) {
     } else if (q.type === 'matching') {
         return `
             <h2 class="question-text">匹配单词与含义</h2>
-            <div class="matching-grid">
+             <div class="matching-grid">
                 <div class="matching-col">
                     ${q.leftItems.map(item => `
-                        <button class="match-card ${item.matched ? 'matched' : ''} ${state.practice.matching?.left?.id === item.id ? 'selected' : ''}" 
-                                onclick="app.handleMatchClick('left', ${item.id})" ${item.matched ? 'disabled' : ''}>
-                            ${item.left}
-                        </button>`).join('')}
+                        <div class="match-card-wrapper ${state.practice.activeHintId === 'left-' + item.id ? 'active' : ''}">
+                            <button class="match-card ${item.matched ? 'matched' : ''} ${state.practice.matching?.left?.id === item.id ? 'selected' : ''}" 
+                                    onclick="app.handleMatchClick('left', ${item.id}, event)" ${item.matched ? 'disabled' : ''}>
+                                ${item.originalJp || item.left}
+                            </button>
+                            <div class="match-hint">
+                                <div class="hint-kana">${item.kana}</div>
+                                <div class="hint-romaji">${item.romaji || ''}</div>
+                                <div class="hint-cn">${item.right}</div>
+                            </div>
+                        </div>`).join('')}
                 </div>
                 <div class="matching-col">
                     ${q.rightItems.map(item => `
-                        <button class="match-card ${item.matched ? 'matched' : ''} ${state.practice.matching?.right?.id === item.id ? 'selected' : ''}" 
-                                onclick="app.handleMatchClick('right', ${item.id})" ${item.matched ? 'disabled' : ''}>
-                            ${item.right}
-            </button>`).join('')}
+                        <div class="match-card-wrapper">
+                            <button class="match-card ${item.matched ? 'matched' : ''} ${state.practice.matching?.right?.id === item.id ? 'selected' : ''}" 
+                                    onclick="app.handleMatchClick('right', ${item.id}, event)" ${item.matched ? 'disabled' : ''}>
+                                ${item.right}
+                            </button>
+                        </div>`).join('')}
                 </div>
             </div>
         `;
@@ -541,19 +729,20 @@ function renderQuestionContent(q) {
             <div class="speaking-layout">
                 <div class="speaking-prompt-container" style="display: flex; align-items: flex-start; justify-content: center; gap: 15px; margin-bottom: 25px; width: 100%;">
                      <!-- margin-top to align with Japanese text below Romaji -->
-                     <button class="speaker-icon" style="margin-top: 28px; position: relative; z-index: 10; background:transparent; border:none;" onclick="app.speakText('${playAudio}', 'ja'); app.showToast('播放中...');">
+                     <button class="speaker-icon" style="margin-top: 28px; position: relative; z-index: 10; background:transparent; border:none;" onclick="app.speakText('${playAudio}', 'ja');">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18.03,19.86 21,16.28 21,12C21,7.72 18.03,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16.02C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z"></path></svg>
                      </button>
-                     <div class="text-stack" style="display: flex; flex-direction: column; align-items: center; cursor: pointer;" onclick="app.speakText('${playAudio}', 'ja'); app.showToast('播放中...');">
-                         <div class="hint-romaji" style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 4px; font-weight: 500;">${q.romaji}</div>
+                     <div class="text-stack" style="display: flex; flex-direction: column; align-items: center;">
+                          <div class="hint-kana" style="font-size: 1.2rem; color: var(--color-primary); font-weight: 700; opacity: 0.9;">${q.fullKana || ''}</div>
+                          <div class="hint-romaji" style="font-size: 1.0rem; color: var(--text-secondary); margin-bottom: 6px; font-weight: 500; font-style: italic;">${q.romaji}</div>
                          ${q.segments ?
                 `<div class="sentence-segments" style="justify-content: center;">
                                 ${q.segments.map((seg, idx) => {
                     if (!seg.text || ['。', '？', '！', '.', '?', '!'].includes(seg.text)) return '';
-                    return `<div class="segment-wrapper" onclick="app.showSegmentHint(this, ${idx})"><div class="segment-text" style="font-size: 2.2rem;">${seg.text}</div><div class="segment-hint"><div class="hint-romaji">${(seg.romaji || '').toLowerCase()}</div><div class="hint-cn">${seg.cn}</div></div></div>`;
+                    return `<div class="segment-wrapper" onclick="app.showSegmentHint(this, ${idx})"><div class="segment-text" style="font-size: 2.2rem;">${seg.text}</div><div class="segment-hint"><div class="hint-kana">${seg.kana || ''}</div><div class="hint-romaji">${(seg.romaji || '').toLowerCase()}</div><div class="hint-cn">${seg.cn}</div></div></div>`;
                 }).join('')}
                             </div>`
-                : `<div class="question-kana" style="font-size: 2.2rem; line-height: 1.2; transition: color 0.2s; cursor: pointer;" onclick="app.speakText('${playAudio}', 'ja'); app.showToast('播放中...');">${q.display.replace(/[\。\.]/g, '')}</div>`
+                : `<div class="question-kana" style="font-size: 2.2rem; line-height: 1.2;">${q.display.replace(/[\。\.]/g, '')}</div>`
             }
                      </div>
                 </div>
@@ -562,7 +751,12 @@ function renderQuestionContent(q) {
                     <button class="mic-btn ${state.practice.isListening ? 'listening' : ''}" onclick="app.toggleListening()">
                         ${state.practice.isListening ? '<div class="wave-anim"></div>' : '🎙️'}
                     </button>
-                    <div class="mic-status">${state.practice.isListening ? '正在听...' : '点击麦克风开始说话'}</div>
+                    ${state.practice.isListening ?
+                `<div class="listening-wave">
+                         <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                       </div>`
+                : `<div class="mic-status">点击麦克风开始说话</div>`
+            }
                     ${state.practice.speechResult ? `<div class="speech-result">"${state.practice.speechResult}"</div>` : ''}
                 </div>
             </div>
@@ -570,17 +764,30 @@ function renderQuestionContent(q) {
     } else {
         const textToSpeak = q.audio || q.display || '';
         return `
-             <div class="question-kana-container">
-                <button class="speaker-icon" style="background:transparent; border:none; cursor:pointer;" onclick="app.speakText('${textToSpeak.replace(/[\。\.]/g, '')}', 'ja'); app.showToast('播放中...');">
+             <div class="question-kana-container kana-card-wrapper">
+                <button class="speaker-icon" style="background:transparent; border:none; cursor:pointer;" onclick="app.showKanaDetail(this, '${textToSpeak.replace(/[\。\.\s]/g, '')}', '${q.romaji || ''}');">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18.03,19.86 21,16.28 21,12C21,7.72 18.03,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16.02C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z"></path></svg>
                 </button>
                 ${q.segments ?
                 `<div class="sentence-segments">
                         ${q.segments.map((seg, idx) => {
                     if (!seg.text || ['。', '？', '！', '.', '?', '!'].includes(seg.text)) return '';
-                    return `<div class="segment-wrapper" onclick="app.showSegmentHint(this, ${idx})"><div class="segment-text">${seg.text}</div><div class="segment-hint"><div class="hint-romaji">${(seg.romaji || '').toLowerCase()}</div><div class="hint-cn">${seg.cn}</div></div></div>`;
+                    return `<div class="segment-wrapper" onclick="app.showSegmentHint(this, ${idx})"><div class="segment-text">${seg.text}</div><div class="segment-hint"><div class="hint-kana">${seg.kana || ''}</div><div class="hint-romaji">${(seg.romaji || '').toLowerCase()}</div><div class="hint-cn">${seg.cn}</div></div></div>`;
                 }).join('')}
-                    </div>` : `<div class="question-kana" onclick="app.speakText('${textToSpeak.replace(/[\。\.\s]/g, '')}', 'ja'); app.showToast('播放中...');">${q.display}</div>`
+                    </div>` : `
+                    <div class="kana-character-box">
+                        <div class="question-kana" onclick="app.showKanaDetail(this, '${textToSpeak.replace(/[\。\.\s]/g, '')}', '${q.romaji || ''}')">${q.display}</div>
+                        <div class="kana-bubble">
+                            <div class="hint-romaji">${q.romaji || ''}</div>
+                        </div>
+                    </div>
+                    ${q.type === 'kana' ? `
+                        <div class="stroke-order-panel">
+                            <div class="stroke-order-title">笔顺动画</div>
+                            <img class="stroke-order-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/${hiragana[q.display] ? 'Hiragana' : 'Katakana'}_${encodeURIComponent(q.display)}_stroke_order_animation.gif" alt="Stroke Order">
+                        </div>
+                    ` : ''}
+                    `
             }
             </div>
             <div class="options-grid">${q.options.map((opt, i) => `<button class="option-btn" onclick="app.selectAnswer(${i})">${opt}</button>`).join('')}</div>
@@ -653,7 +860,7 @@ function checkAnswer(isMatchingComplete = false) {
     let isCorrect = false;
 
     // Helper to strip punctuation for lenient checking
-    const clean = (str) => str ? str.replace(/[。？！\!\?\. ]/g, '') : '';
+    const clean = (str) => str ? str.replace(/[。？！，、．,!\?\.\s]/g, '') : '';
 
     if (q.type === 'sentence-building') {
         const built = (state.practice.builtSentence || []).map(idx => q.blocks[idx]).join('');
@@ -680,7 +887,12 @@ function checkAnswer(isMatchingComplete = false) {
             <button class="btn ${isCorrect ? 'btn-success' : 'btn-danger'}" onclick="app.nextQuestion()">继续</button>
         </div>
         `;
-    if (isCorrect) { soundManager.correct(); state.practice.correctCount++; addXP(10); }
+    if (isCorrect) {
+        soundManager.correct();
+        state.practice.correctCount++;
+        addXP(10);
+        app.createParticles(window.innerWidth / 2, window.innerHeight / 2);
+    }
     else {
         soundManager.incorrect(); state.user.hearts = Math.max(0, state.user.hearts - 1);
         const mistakeKey = q.type === 'sentence-building' ? q.answer : q.display;
@@ -707,6 +919,15 @@ function prevQuestion() {
 }
 
 function showResult(success) {
+    state.practice.showingResult = true;
+    state.practice.resultSuccess = success;
+
+    // Only update progress once
+    if (success && state.practice.lessonId && !state.user.lessonsCompleted.includes(state.practice.lessonId)) {
+        state.user.lessonsCompleted.push(state.practice.lessonId);
+        saveState();
+    }
+
     const container = document.querySelector('.practice-container');
     const accuracy = Math.round((state.practice.correctCount / state.practice.questions.length) * 100);
     container.innerHTML = `
@@ -717,14 +938,15 @@ function showResult(success) {
                 <div class="result-stat"><div class="result-stat-value">${state.practice.correctCount}</div><div class="result-stat-label">正确</div></div>
                 <div class="result-stat"><div class="result-stat-value">${accuracy}%</div><div class="result-stat-label">正确率</div></div>
             </div>
+            
+            ${success && state.practice.lessonId ? renderWordSummary() : ''}
+
             ${!success ? `<button class="btn btn-primary btn-block" onclick="location.reload()">重试</button>` :
             state.practice.mistakes.length > 0 ? `<button class="btn btn-secondary btn-block" onclick="app.startReviewMistakes()">复习错题</button>` : ''
         }
     <button class="btn btn-primary btn-block" onclick="app.closeResult()">返回主页</button>
         </div>
         `;
-    if (success && state.practice.lessonId) state.user.lessonsCompleted.push(state.practice.lessonId);
-    saveState();
 }
 
 function startLesson(id) {
@@ -733,10 +955,11 @@ function startLesson(id) {
     soundManager.click();
     ttsManager.speak(lesson.name);
     let questions = [];
+
+    // 1. Word Questions (Learn Words)
     if (lesson.type === 'word') {
-        questions = lesson.words.map(wid => {
+        const wordQuestions = lesson.words.map(wid => {
             const w = wordsData[wid];
-            // Remove periods from options
             const options = [w.cn.replace(/。/g, '')];
             const allCN = Object.values(wordsData).map(x => x.cn.replace(/。/g, ''));
             while (options.length < 4) {
@@ -746,43 +969,13 @@ function startLesson(id) {
             options.sort(() => Math.random() - 0.5);
             return { display: w.jp.replace(/。/g, ''), audio: w.kana, segments: [{ text: w.jp, kana: w.kana, romaji: w.romaji, cn: w.cn }], options, correctIndex: options.indexOf(w.cn.replace(/。/g, '')), type: 'word' };
         });
-        lesson.sentences.forEach(s => {
-            // Remove periods from sentence options
-            const options = [s.cn.replace(/。/g, ''), '还是学生吗', '田中先生是学生', '我不去学校'].sort(() => Math.random() - 0.5);
-            // Fix: remove period from audio source AND display
-            questions.push({ display: s.jp.replace(/。/g, ''), audio: s.jp.replace(/。/g, ''), segments: s.segments, options, correctIndex: options.indexOf(s.cn.replace(/。/g, '')), type: 'sentence' });
-            if (s.segments) {
-                // Filter out punctuation completely for blocks
-                const blocks = s.segments.filter(seg => seg.text && !['。', '？', '！', '!', '?', '.'].includes(seg.text)).map(seg => seg.text);
+        questions.push(...wordQuestions);
 
-                // Pass segments for lookup
-                questions.push({
-                    cn: s.cn.replace(/[。？！\!\?\. ]/g, ''),
-                    answer: s.jp,
-                    blocks: [...blocks].sort(() => Math.random() - 0.5),
-                    segments: s.segments,
-                    type: 'sentence-building'
-                });
-
-                // Add Speaking Question (Shadowing)
-                questions.push({
-                    display: s.jp,
-                    romaji: s.segments.map(seg => seg.romaji).join(' '),
-                    cn: s.cn,
-                    audio: s.jp,
-                    audioKana: s.segments.map(seg => seg.kana || seg.text).join('').replace(/[。\. ?！!]/g, ''),
-                    type: 'speaking',
-                    segments: s.segments
-                });
-            }
-        });
-
-        // Add Matching Question (Pairs)
+        // 2. Matching Question (Pairs) - using learnt words
         if (lesson.words && lesson.words.length >= 4) {
+            // Take up to 5 words from the current lesson for matching
             const matchingWords = lesson.words.slice(0, 5).map(wid => wordsData[wid]);
-            // Create pairs
-            const pairs = matchingWords.map((w, i) => ({ id: i, left: w.jp, right: w.cn, matched: false }));
-            // Shuffle visual order
+            const pairs = matchingWords.map((w, i) => ({ id: i, originalJp: w.jp, left: w.kana, kana: w.kana, romaji: w.romaji, right: w.cn, matched: false }));
             questions.push({
                 type: 'matching',
                 title: '单词配对',
@@ -792,6 +985,58 @@ function startLesson(id) {
                 solvedCount: 0
             });
         }
+
+        lesson.sentences.forEach(s => {
+            // 3. Sentence Building (Make Sentences)
+            if (s.segments) {
+                const blocks = s.segments.filter(seg => seg.text && !['。', '？', '！', '!', '?', '.'].includes(seg.text)).map(seg => seg.text);
+                questions.push({
+                    cn: s.cn.replace(/[。？！\!\?\. ]/g, ''),
+                    answer: s.jp,
+                    blocks: [...blocks].sort(() => Math.random() - 0.5),
+                    segments: s.segments,
+                    type: 'sentence-building'
+                });
+            }
+
+            // 4. Speaking (Shadowing)
+            questions.push({
+                display: s.jp,
+                romaji: s.segments ? s.segments.map(seg => seg.romaji).join(' ') : '',
+                fullKana: s.segments ? s.segments.map(seg => seg.kana || (['。', '？', '！', '!', '?', '.'].includes(seg.text) ? seg.text : '')).join('') : (s.kana || ''),
+                cn: s.cn,
+                audio: s.jp,
+                audioKana: s.segments ? s.segments.map(seg => seg.kana || seg.text).join('').replace(/[。\. ?！!]/g, '') : s.jp,
+                type: 'speaking',
+                segments: s.segments
+            });
+        });
+
+    } else if (lesson.type === 'kana-all') {
+        const kanaSet = lesson.kanaType === 'hiragana' ? hiragana : katakana;
+        const allKeys = Object.keys(kanaSet);
+        const allValues = Object.values(kanaSet);
+
+        lesson.chapters.forEach(chap => {
+            const keys = allKeys.slice(chap.start, chap.end);
+            const chapQuestions = keys.map(k => {
+                const options = [kanaSet[k]];
+                while (options.length < 4) {
+                    const r = allValues[Math.floor(Math.random() * allValues.length)];
+                    if (!options.includes(r)) options.push(r);
+                }
+                options.sort(() => Math.random() - 0.5);
+                return {
+                    display: k,
+                    romaji: kanaSet[k],
+                    options,
+                    correctIndex: options.indexOf(kanaSet[k]),
+                    type: 'kana',
+                    chapterName: chap.name
+                };
+            });
+            questions.push(...chapQuestions);
+        });
     } else {
         const kanaSet = lesson.type === 'kana' ? hiragana : katakana;
         const keys = Object.keys(kanaSet).slice(lesson.start, lesson.end);
@@ -800,48 +1045,48 @@ function startLesson(id) {
             const allV = Object.values(kanaSet);
             while (options.length < 4) { const r = allV[Math.floor(Math.random() * allV.length)]; if (!options.includes(r)) options.push(r); }
             options.sort(() => Math.random() - 0.5);
-            return { display: k, options, correctIndex: options.indexOf(kanaSet[k]), type: 'kana' };
+            return { display: k, romaji: kanaSet[k], options, correctIndex: options.indexOf(kanaSet[k]), type: 'kana' };
         });
-    }
-
-    // Move matching to end
-    const matchingQIdx = questions.findIndex(q => q.type === 'matching');
-    if (matchingQIdx > -1) {
-        questions.push(questions.splice(matchingQIdx, 1)[0]);
     }
 
     state.practice = {
         active: true,
-        questions: questions.sort(() => Math.random() - 0.5), // This sort defeats the manual move above if random. Let's fix.
+        questions: questions, // Use the ordered list directly, NO RANDOM SORT
         currentIndex: 0,
         correctCount: 0,
         selectedAnswer: null,
         builtSentence: [],
         lessonId: lesson.id,
         mistakes: [],
-        matching: { left: null, right: null }, // Matching state
+        matching: { left: null, right: null },
         isListening: false,
-        speechResult: ''
+        speechResult: '',
+        showingResult: false,
+        resultSuccess: false
     };
-
-    // Ensure matching is LAST if it exists
-    const mIdx = state.practice.questions.findIndex(q => q.type === 'matching');
-    if (mIdx > -1) {
-        state.practice.questions.push(state.practice.questions.splice(mIdx, 1)[0]);
-    }
 
     document.getElementById('practiceModal').classList.add('open');
     renderPractice();
 }
 
-function handleMatchClick(side, id) {
+function handleMatchClick(side, id, event) {
     const q = state.practice.questions[state.practice.currentIndex];
 
     // Play sound on click & speak Japanese if it's the left side (Japanese word)
     soundManager.click();
     if (side === 'left') {
         const item = q.leftItems.find(i => i.id === id);
-        if (item) app.speakText(item.left, 'ja');
+        const textToSpeak = item.kana || item.left;
+        app.speakText(textToSpeak, 'ja');
+
+        // Show bubble hint directly on DOM to avoid layout jump
+        if (event) {
+            const wrapper = event.currentTarget.closest('.match-card-wrapper');
+            if (wrapper) {
+                wrapper.classList.add('active');
+                setTimeout(() => wrapper.classList.remove('active'), 2000);
+            }
+        }
     }
 
     // Update local selection
@@ -850,7 +1095,14 @@ function handleMatchClick(side, id) {
     // If clicking same side again, update selection
     state.practice.matching[side] = { id };
 
-    renderPractice();
+    // Update UI directly for selection instead of full render to keep hint alive
+    if (event) {
+        // Clear previous selection visually in the same column
+        const col = event.currentTarget.closest('.matching-col');
+        col.querySelectorAll('.match-card').forEach(btn => btn.classList.remove('selected'));
+        // Add selected class to current
+        event.currentTarget.classList.add('selected');
+    }
 
     // Check match if both sides selected
     if (state.practice.matching.left && state.practice.matching.right) {
@@ -858,32 +1110,32 @@ function handleMatchClick(side, id) {
         const rightId = state.practice.matching.right.id;
 
         if (leftId === rightId) {
-            // Correct Match
+            // Correct Match - Now we can do a full render to clean up and update 'matched' status
             setTimeout(() => {
                 soundManager.correct();
 
-                // Mark matched but DO NOT remove (removed items often use .invisible or just fail to render)
-                // In renderQuestionContent (matching case), we check item.matched? 'matched' : ''
-                // We should ensure CSS keeps them visible but 'matched' style is applied.
-
                 const leftItem = q.leftItems.find(i => i.id === leftId);
                 const rightItem = q.rightItems.find(i => i.id === rightId);
-
                 if (leftItem) leftItem.matched = true;
                 if (rightItem) rightItem.matched = true;
-
-                q.solvedCount++;
+                q.solvedCount = (q.solvedCount || 0) + 1;
                 state.practice.matching = { left: null, right: null };
 
-                // Check if all solved
-                if (q.solvedCount >= 5 || q.solvedCount >= q.originalPairs.length) {
-                    app.checkAnswer(true); // Auto proceed
+                if (q.solvedCount >= q.originalPairs.length) {
+                    app.checkAnswer(true);
                 } else {
                     renderPractice();
                 }
             }, 300);
         } else {
-            // Incorrect
+            // Incorrect - Visual feedback then clear
+            document.querySelectorAll('.match-card.selected').forEach(el => {
+                el.classList.add('incorrect');
+                el.style.animation = 'none';
+                void el.offsetWidth;
+                el.style.animation = 'shake 0.4s ease-in-out';
+            });
+
             setTimeout(() => {
                 soundManager.incorrect();
                 state.practice.matching = { left: null, right: null };
@@ -900,6 +1152,8 @@ function toggleListening() {
         // Stop
         state.practice.isListening = false;
         if (state.recognition) state.recognition.stop();
+        if (state.recognition) state.recognition.stop();
+        stopAudioVisualizer(); // Ensure cleanup
         renderPractice();
     } else {
         // Start
@@ -938,17 +1192,92 @@ function toggleListening() {
             recognition.onend = () => {
                 if (state.practice.isListening) {
                     state.practice.isListening = false;
+                    stopAudioVisualizer(); // Stop visualizer
                     renderPractice();
                 }
             };
 
             recognition.start();
+            initAudioVisualizer(); // Start visualizer
         } catch (e) {
             console.error(e);
             state.practice.isListening = false;
             renderPractice();
         }
     }
+}
+
+// Audio Visualizer Logic
+let audioContext = null;
+let analyser = null;
+let microphone = null;
+let javascriptNode = null;
+let visualizerInterval = null;
+
+function initAudioVisualizer() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
+
+    navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(function (stream) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioContext.createAnalyser();
+            microphone = audioContext.createMediaStreamSource(stream);
+            javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+
+            analyser.smoothingTimeConstant = 0.8;
+            analyser.fftSize = 1024;
+
+            microphone.connect(analyser);
+            analyser.connect(javascriptNode);
+            javascriptNode.connect(audioContext.destination);
+
+            visualizerInterval = setInterval(() => {
+                if (!state.practice.isListening) return;
+
+                const array = new Uint8Array(analyser.frequencyBinCount);
+                analyser.getByteFrequencyData(array);
+
+                // Calculate average volume
+                let values = 0;
+                const length = array.length;
+                for (let i = 0; i < length; i++) {
+                    values += array[i];
+                }
+                const average = values / length;
+
+                // Update UI bars
+                const bars = document.querySelectorAll('.wave-bar');
+                if (bars.length > 0) {
+                    bars.forEach((bar, i) => {
+                        const volumeHeight = Math.min(100, Math.max(4, average * 1.5 + Math.random() * 10));
+                        bar.style.height = `${volumeHeight}%`;
+                        bar.style.animation = 'none';
+                    });
+                }
+            }, 50);
+
+            javascriptNode.onaudioprocess = function () {
+                // Needed for Chrome to keep processing audio
+            };
+        })
+        .catch(function (err) {
+            console.warn('Microphone access denied for visualizer', err);
+        });
+}
+
+function stopAudioVisualizer() {
+    if (visualizerInterval) clearInterval(visualizerInterval);
+    if (javascriptNode) javascriptNode.disconnect();
+    if (analyser) analyser.disconnect();
+    if (microphone) microphone.disconnect();
+    if (audioContext && audioContext.state !== 'closed') audioContext.close();
+
+    // Reset vars
+    audioContext = null;
+    analyser = null;
+    microphone = null;
+    javascriptNode = null;
+    visualizerInterval = null;
 }
 
 function checkSpeaking(forcePass = false, transcript = '') {
@@ -973,7 +1302,10 @@ function checkSpeaking(forcePass = false, transcript = '') {
                 <div class="feedback-icon">✅</div>
                 <div class="feedback-text">
                     <div class="feedback-title">发音不错！</div>
-                    <div class="feedback-detail">${transcript ? `你说了: ${transcript}` : '继续加油'}</div>
+                    <div class="feedback-detail">
+                        ${q.cn ? `<div style="font-size: 1.2rem; color: #fff; margin-bottom: 4px; font-weight: 800; border-left: 4px solid rgba(255,255,255,0.3); padding-left: 10px;">${q.cn}</div>` : ''}
+                        ${transcript ? `你说了: ${transcript}` : '继续加油'}
+                    </div>
                 </div>
                 <button class="btn btn-success" onclick="app.nextQuestion()">继续</button>
             </div>
@@ -1001,13 +1333,29 @@ function closePractice() {
 }
 function closeResult() { closePractice(); renderPage('dashboard'); }
 
-function showKanaDetail(char, romaji) {
+function showKanaDetail(el, char, romaji) {
+    // Attempt to trigger a beep to unlock/verify audio context
+    try { soundManager.click(); } catch (e) { }
+
     ttsManager.speak(char, 0.8, 'ja-JP');
-    showToast(`发音: ${char} (${romaji})`);
+
+    // Toggle bubble
+    const wrapper = el.closest('.kana-character-box') || el.closest('.kana-card-wrapper');
+    if (wrapper) {
+        document.querySelectorAll('.active').forEach(w => w.classList.remove('active'));
+        wrapper.classList.add('active');
+        setTimeout(() => wrapper.classList.remove('active'), 3000);
+    }
 }
 
+
 function showToast(msg) {
-    const t = document.getElementById('toast');
+    let t = document.getElementById('toast');
+    if (!t) {
+        t = document.createElement('div');
+        t.id = 'toast';
+        document.body.appendChild(t);
+    }
     t.textContent = msg;
     t.classList.add('visible');
     setTimeout(() => t.classList.remove('visible'), 3000);
@@ -1017,7 +1365,7 @@ function addXP(amount) { state.user.xp += amount; createXPParticle(amount); upda
 function checkLevelUp() {
     const oldLevel = state.user.level;
     state.user.level = Math.floor(state.user.xp / 100) + 1;
-    if (state.user.level > oldLevel) { soundManager.levelUp(); showToast(`等级提升：等级 ${state.user.level} `); }
+    if (state.user.level > oldLevel) { soundManager.levelUp(); }
 }
 
 function createXPParticle(amount) {
@@ -1030,6 +1378,73 @@ function createXPParticle(amount) {
     p.style.left = `${rect.left}px`; p.style.top = `${rect.top}px`;
     document.body.appendChild(p);
     setTimeout(() => p.remove(), 1000);
+}
+
+function renderWordSummary() {
+    const lesson = lessons.find(l => l.id === state.practice.lessonId);
+    if (!lesson || !lesson.words || lesson.words.length === 0) return '';
+
+    const wordList = lesson.words.map(wid => wordsData[wid]);
+
+    return `
+        <div class="word-summary-container" style="margin: 20px 0; background: var(--bg-card); padding: 15px; border-radius: 12px; width: 100%;">
+            <h3 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1rem; color: var(--text-secondary);">本节生词回顾</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; width: 100%;">
+                ${wordList.map((w, i) => `
+                    <div class="summary-word-wrapper ${state.practice.activeSummaryHint === i ? 'active' : ''}" style="position: relative;">
+                        <div class="summary-word-item" onclick="app.showSummaryHint(${i}, '${w.kana}', event)" style="text-align: center; padding: 14px 18px; background: var(--bg-primary); border: 2px solid var(--bg-tertiary); border-radius: 12px; cursor: pointer; white-space: nowrap;">
+                            <div style="font-size: 1.4rem; font-weight: bold; overflow: hidden; text-overflow: ellipsis;">${w.jp}</div>
+                        </div>
+                        <div class="match-hint summary-hint">
+                            <div class="hint-kana">${w.kana}</div>
+                            <div class="hint-romaji">${w.romaji || ''}</div>
+                            <div class="hint-cn">${w.cn}</div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+
+function showSummaryHint(index, kana, event) {
+    app.speakText(kana, 'ja');
+
+    // Toggle class directly on the wrapper without full re-render to prevent jumping
+    const wrapper = event.currentTarget.closest('.summary-word-wrapper');
+    if (wrapper) {
+        wrapper.classList.add('active');
+        setTimeout(() => wrapper.classList.remove('active'), 2000);
+    }
+}
+
+function createParticles(x, y) {
+    const colors = ['#58CC02', '#1CB0F6', '#FFD900', '#FF4B4B'];
+    for (let i = 0; i < 20; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        p.style.left = x + 'px';
+        p.style.top = y + 'px';
+
+        // Random velocity
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = 5 + Math.random() * 10;
+        const tx = Math.cos(angle) * 100;
+        const ty = Math.sin(angle) * 100;
+
+        p.animate([
+            { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+            { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+        ], {
+            duration: 800 + Math.random() * 400,
+            easing: 'cubic-bezier(0, .9, .57, 1)',
+            fill: 'forwards'
+        });
+
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 1200);
+    }
 }
 
 function speakText(text, lang) { ttsManager.speak(text, 0.9, lang === 'ja' ? 'ja-JP' : 'zh-CN'); }
@@ -1082,7 +1497,7 @@ function removeBuildingBlock(builtIdx) {
     renderPractice();
 }
 
-window.app = { startLesson, startQuickPractice, selectAnswer, checkAnswer, nextQuestion, prevQuestion, closePractice, closeResult, showKanaDetail, speakText, showSegmentHint, addBuildingBlock, removeBuildingBlock, startReviewMistakes, handleMatchClick, toggleListening, checkSpeaking };
+window.app = { startLesson, startQuickPractice, selectAnswer, checkAnswer, nextQuestion, prevQuestion, closePractice, closeResult, showKanaDetail, speakText, showSegmentHint, addBuildingBlock, removeBuildingBlock, startReviewMistakes, handleMatchClick, toggleListening, checkSpeaking, showToast, createParticles, showSummaryHint };
 
 document.addEventListener('DOMContentLoaded', () => {
     loadState();
